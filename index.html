@@ -145,7 +145,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
   <h1>核融合點火了，<br>但<span class="beam">光</span>還造不出來</h1>
   <p class="lede">Google、微軟忙著搶電，核融合看起來還要再等三十年。這集訪談的重點是：物理門檻已經跨過，接下來卡住的是製造。雷射要打得夠快、夠便宜，靠的是一顆顆半導體雷射二極體，而這一段剛好是台灣擅長的領域。</p>
   <div class="hero-beam" aria-hidden="true"></div>
-  <p class="note">閱讀提示：核融合有磁約束與慣性約束兩大路線，本頁以<b>雷射（慣性約束）</b>為主。原理與兩條路線的比較，請先看下方「核融合怎麼發電」。</p>
+  <p class="note">閱讀提示：核融合有磁約束與慣性約束兩大路線，本頁以<b>雷射（慣性約束）</b>為主。原理與兩條路線的比較，請先看下方「核融合怎麼發電」。<b>另外請注意：半導體與核融合並非必然相關，只有「雷射路線」才需要大量半導體晶片。</b></p>
   <div class="meta">
     <span>主持 <b>鄭國威</b>（泛科知識）</span>
     <span>來賓 <b>Jim Chiu</b>（Holonomy Systems 創辦人，清大核工背景、前 Web3 新創 CTO）</span>
@@ -328,7 +328,14 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 <section id="why">
   <div class="sec-head"><div class="sec-no">00 · 導讀</div><h2>核融合發電，跟半導體製造有什麼關係？</h2></div>
   <div class="prose">
-    <p>先講結論：<b>雷射核融合要靠雷射點火，雷射的光源是半導體晶片，而一座電廠需要的晶片數量大到變成量產問題。</b>這條關係只適用雷射路線（慣性約束）。用超導磁鐵關住電漿的托卡馬克路線，和半導體製造的關係小很多。</p>
+    <p>先講結論：<b>雷射核融合要靠雷射點火，雷射的光源是半導體晶片，而一座電廠需要的晶片數量大到變成量產問題。</b>這條關係<b>只在特定條件下才成立</b>，不是核融合本身的必然需求。</p>
+  </div>
+  <div class="note" style="border-left:4px solid var(--laser)">
+    <b>先釐清，避免誤會：核融合和半導體製程之間沒有絕對關係。</b>要成立「核融合需要大量半導體晶片」，必須<b>同時</b>滿足三個條件：<br>
+    ① 電廠走<b>雷射路線</b>（慣性約束），而不是磁約束或其他路線；<br>
+    ② 雷射的泵浦光源用<b>半導體雷射二極體</b>，而不是別種發光方式；<br>
+    ③ 二極體選擇<b>砷化鎵面射型</b>這種可以量產的架構。<br>
+    只要其中一個條件不成立，半導體對核融合的重要性就會大幅下降。用超導磁鐵關住電漿的托卡馬克路線，核心零件是超導磁鐵，不是半導體晶片。詳細分析見最後一節「如果核融合走的是別條路，半導體還有用嗎？」
   </div>
   <figure>
     <div class="fig-title">圖 0　從電廠一路拆到晶片</div>
@@ -975,6 +982,23 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
       <p style="font-size:15px">半導體雷射直接把電子轉成光子，紀錄效率已超過 70%，其他方法很難在效率上大幅超越，通常只能在單位成本或單發能量上取勝。而且它的需求不靠核融合：AI 資料中心光通訊（矽光子、CPO）、3D 感測、車用光達、工業、醫療與牙科雷射、國防。</p>
     </div>
   </div>
+
+  <div class="sec-head" style="margin-top:18px" id="others"><h2 style="font-size:clamp(20px,3vw,26px)">如果核融合走的是別條路，半導體還有用嗎？</h2></div>
+  <div class="prose">
+    <p>不同的勝出情境，對半導體的需求差很多。下表是依前面的分析所做的概略判斷，不是訪談內容，也不是預測：</p>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>如果最後勝出的是…</th><th>對半導體晶片的需求</th><th>對台灣砷化鎵與封裝產業的影響</th></tr></thead>
+      <tbody>
+        <tr><td><b>雷射路線 ＋ 二極體泵浦</b></td><td class="win">需求極大，約 5,000 萬條雷射巴條</td><td>直接受惠，是本頁討論的情境</td></tr>
+        <tr><td><b>雷射路線，但用準分子氣體雷射</b>（如 Xcimer）</td><td>泵浦光源不靠二極體，需求大幅下降</td><td>核融合這塊落空，其餘市場不受影響</td></tr>
+        <tr><td><b>磁約束（托卡馬克）或脈衝電力路線</b></td><td>核心是超導磁鐵，電源、控制、感測用到一般電子元件，但不是主要瓶頸</td><td>核融合這塊落空，其餘市場不受影響</td></tr>
+        <tr><td><b>核融合遲遲不成功</b></td><td>幾乎沒有</td><td>不受影響，產業主要靠其他市場</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><b>所以正確的讀法是：</b>台灣的砷化鎵與先進封裝產業，主要生意來自 AI 光通訊、3D 感測、車用光達、工業與醫療雷射、國防，這些市場現在就存在。核融合是額外的選擇權：雷射路線若成功，這些能力剛好派得上用場；若不成功，也不會拖垮這些本業。<b>不能反過來說「發展半導體就是為了核融合」，兩者之間沒有必然的因果。</b></div>
 
   <div class="theory">
     <div class="tag">追蹤這場賽局的四個指標</div>
