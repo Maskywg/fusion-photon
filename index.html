@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>核融合的光從哪裡來</title>
+<meta name="description" content="思想實驗室 ep119 × Holonomy Systems Jim Chiu 訪談知識網頁：AI 搶電、Q 值拆解、五萬倍製造牆、面射型雷射與台灣砷化鎵供應鏈。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="核融合的光從哪裡來｜思想實驗室 ep119 知識圖解">
+<meta property="og:description" content="點火成功之後，真正的難關是製造：用示意圖與理論拆解雷射核融合的五萬倍製造牆與台灣砷化鎵供應鏈。">
+<meta property="og:image" content="https://maskywg.github.io/fusion-photon/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://maskywg.github.io/fusion-photon/">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="核融合的光從哪裡來｜思想實驗室 ep119 知識圖解">
+<meta name="twitter:description" content="點火成功之後，真正的難關是製造：用示意圖與理論拆解雷射核融合的五萬倍製造牆與台灣砷化鎵供應鏈。">
+<meta name="twitter:image" content="https://maskywg.github.io/fusion-photon/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#FBFCFD;
+  --panel:#F1F5F8;
+  --ink:#15222C;
+  --ink2:#4A5A66;
+  --line:#D6DEE5;
+  --laser:#D2461E;
+  --laser-soft:#FBE7E0;
+  --ir:#6A3FC8;
+  --ir-soft:#ECE6FA;
+  --blue:#1F6FB2;
+  --blue-soft:#E1EEF8;
+  --ok:#2E8A57;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.8;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:980px;margin:0 auto}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--laser);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);text-wrap:balance;line-height:1.3;margin:0}
+p{margin:0}
+.prose{max-width:66ch;display:grid;gap:14px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* hero */
+.hero{padding-block:56px 36px;display:grid;gap:18px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:13px;letter-spacing:.14em;color:var(--ink2);font-weight:500}
+.hero h1{font-size:clamp(34px,6.4vw,64px);font-weight:900;letter-spacing:.01em}
+.hero h1 .beam{color:var(--laser)}
+.hero .lede{font-size:clamp(17px,2.2vw,20px);color:var(--ink2);max-width:52ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:700}
+.hero-beam{height:4px;background:linear-gradient(90deg,var(--ir) 0%,var(--laser) 60%,transparent 100%);border-radius:2px;max-width:420px}
+
+/* toc */
+.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;overflow-x:auto;white-space:nowrap;font-size:14px}
+.toc a{color:var(--ink2);text-decoration:none;margin-right:18px}
+.toc a:hover{color:var(--laser)}
+
+section{padding-block:52px 8px;display:grid;gap:22px;scroll-margin-top:52px}
+.sec-head{display:grid;gap:6px}
+.sec-no{font-family:var(--mono);font-size:13px;color:var(--laser);letter-spacing:.08em}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);font-weight:900}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.num{background:#fff;padding:18px 16px;display:grid;gap:4px;align-content:start}
+.num .v{font-family:var(--mono);font-size:28px;font-weight:600;color:var(--ink);line-height:1.1}
+.num .v small{font-size:15px;color:var(--ink2);font-weight:400}
+.num .k{font-size:13.5px;color:var(--ink2);line-height:1.5}
+
+/* figure */
+figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 18px 16px;display:grid;gap:12px}
+figure .scroll{overflow-x:auto}
+figure svg{display:block;width:100%;height:auto;min-width:560px}
+figcaption{font-size:14px;color:var(--ink2);line-height:1.6}
+figcaption b{color:var(--ink)}
+.fig-title{font-family:var(--sans);font-weight:700;font-size:15px;color:var(--ink)}
+
+/* theory box */
+.theory{background:var(--panel);border-radius:12px;padding:20px 20px;display:grid;gap:10px}
+.theory .tag{font-size:12.5px;letter-spacing:.12em;color:var(--ir);font-weight:700}
+.theory h3{font-size:20px}
+.theory p{max-width:70ch}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:8px;align-content:start}
+.card h3{font-size:18px}
+.card ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700;background:var(--panel)}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+.win{color:var(--ok);font-weight:700}
+.lose{color:var(--laser);font-weight:700}
+
+/* calculator */
+.calc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:14px}
+.calc label{font-weight:700;font-size:15px}
+.calc input[type=range]{width:100%;accent-color:var(--laser)}
+.calc-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.calc-out div{background:var(--panel);border-radius:8px;padding:12px 14px;display:grid;gap:2px}
+.calc-out .v{font-family:var(--mono);font-size:24px;font-weight:600}
+.calc-out .k{font-size:13px;color:var(--ink2)}
+
+.quote{border-left:3px solid var(--laser);padding:4px 0 4px 16px;font-family:var(--serif);font-size:19px;font-weight:600;max-width:60ch}
+
+.risk{display:grid;gap:12px}
+.risk-row{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.risk-row .lvl{font-size:13px;font-weight:700;padding:3px 10px;border-radius:99px;height:fit-content;width:fit-content}
+.lvl.h{background:var(--laser-soft);color:var(--laser)}
+.lvl.m{background:var(--ir-soft);color:var(--ir)}
+.lvl.l{background:var(--blue-soft);color:var(--blue)}
+@media (max-width:520px){.risk-row{grid-template-columns:1fr;gap:6px}}
+
+.special{margin-top:40px;background:#F2F8F4;border:1px solid #CFE5D8;border-radius:16px;padding:8px 20px 28px}
+@media (max-width:520px){.special{padding:8px 12px 20px;margin-inline:-4px}}
+.note{font-size:14px;color:var(--ink2);background:var(--panel);border-radius:10px;padding:14px 16px;max-width:72ch}
+.sources{font-size:14px;display:grid;gap:6px;padding-left:1.2em;margin:0}
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink2)}
+
+/* svg text classes */
+.sv-t{font-family:var(--sans);fill:var(--ink)}
+.sv-s{font-family:var(--sans);fill:var(--ink2)}
+.sv-m{font-family:var(--mono);fill:var(--ink)}
+@media (prefers-reduced-motion:no-preference){
+  .pulse{animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">思想實驗室 VIDEO PODCAST EP119 · 知識圖解</div>
+  <h1>核融合點火了，<br>但<span class="beam">光</span>還造不出來</h1>
+  <p class="lede">Google、微軟忙著搶電，核融合看起來還要再等三十年。這集訪談的重點是：物理門檻已經跨過，接下來卡住的是製造。雷射要打得夠快、夠便宜，靠的是一顆顆半導體雷射二極體，而這一段剛好是台灣擅長的領域。</p>
+  <div class="hero-beam" aria-hidden="true"></div>
+  <div class="meta">
+    <span>主持 <b>鄭國威</b>（泛科知識）</span>
+    <span>來賓 <b>Jim Chiu</b>（Holonomy Systems 創辦人，清大核工背景、前 Web3 新創 CTO）</span>
+    <span><a href="https://youtu.be/gMw-zGynHKc" target="_blank" rel="noopener">觀看原片 ↗</a></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <a href="#why">核融合 × 半導體</a><a href="#s1">AI 搶電</a><a href="#s2">兩條核融合路線</a><a href="#s3">Q 值拆解</a><a href="#s4">五萬倍製造牆</a><a href="#s5">雷射二極體</a><a href="#s6">成本學習曲線</a><a href="#s7">台灣砷化鎵</a><a href="#s8">灘頭堡策略</a><a href="#s9">理論總整理</a><a href="#s10">風險與反思</a><a href="#career" style="color:var(--ok);font-weight:700">化學系職涯專題</a>
+</nav>
+
+<!-- 0 numbers -->
+<!-- 0 intro -->
+<section id="why">
+  <div class="sec-head"><div class="sec-no">00 · 導讀</div><h2>核融合發電，跟半導體製造有什麼關係？</h2></div>
+  <div class="prose">
+    <p>先講結論：<b>雷射核融合要靠雷射點火，雷射的光源是半導體晶片，而一座電廠需要的晶片數量大到變成量產問題。</b>這條關係只適用雷射路線（慣性約束）。用超導磁鐵關住電漿的托卡馬克路線，和半導體製造的關係小很多。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 0　從電廠一路拆到晶片</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 300" role="img" aria-label="核融合電廠到半導體晶片的四層關係">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15222C"/></marker></defs>
+      <g font-size="13">
+        <rect x="20" y="30" width="195" height="150" rx="10" fill="#F1F5F8" stroke="#4A5A66"/>
+        <text x="36" y="58" class="sv-m" font-size="12" fill="#D2461E" style="fill:#D2461E">第 1 層</text>
+        <text x="36" y="82" class="sv-t" font-size="15" font-weight="700">核融合電廠</text>
+        <text x="36" y="108" class="sv-s" font-size="12.5">上百道雷射同時打</text>
+        <text x="36" y="126" class="sv-s" font-size="12.5">毫米大小的燃料靶丸</text>
+        <text x="36" y="150" class="sv-s" font-size="12.5">每秒約 10 發</text>
+        <rect x="243" y="30" width="195" height="150" rx="10" fill="#ECE6FA" stroke="#6A3FC8"/>
+        <text x="259" y="58" class="sv-m" font-size="12" fill="#D2461E" style="fill:#D2461E">第 2 層</text>
+        <text x="259" y="82" class="sv-t" font-size="15" font-weight="700">大型雷射</text>
+        <text x="259" y="108" class="sv-s" font-size="12.5">雷射玻璃／晶體要先</text>
+        <text x="259" y="126" class="sv-s" font-size="12.5">被強光「灌能量」</text>
+        <text x="259" y="150" class="sv-s" font-size="12.5">這道光叫幫浦光</text>
+        <rect x="466" y="30" width="195" height="150" rx="10" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/>
+        <text x="482" y="58" class="sv-m" font-size="12" fill="#D2461E" style="fill:#D2461E">第 3 層</text>
+        <text x="482" y="82" class="sv-t" font-size="15" font-weight="700">幫浦光源</text>
+        <text x="482" y="108" class="sv-s" font-size="12.5">閃光燈 → 換成</text>
+        <text x="482" y="126" class="sv-s" font-size="12.5">半導體雷射二極體</text>
+        <text x="482" y="150" class="sv-s" font-size="12.5">（LED 的近親）</text>
+        <rect x="689" y="30" width="195" height="150" rx="10" fill="#E1EEF8" stroke="#1F6FB2"/>
+        <text x="705" y="58" class="sv-m" font-size="12" fill="#D2461E" style="fill:#D2461E">第 4 層</text>
+        <text x="705" y="82" class="sv-t" font-size="15" font-weight="700">砷化鎵晶片</text>
+        <text x="705" y="108" class="sv-s" font-size="12.5">磊晶、曝光、蝕刻、</text>
+        <text x="705" y="126" class="sv-s" font-size="12.5">切割、封裝</text>
+        <text x="705" y="150" class="sv-s" font-size="12.5">和手機晶片同一套製程</text>
+      </g>
+      <g stroke="#15222C" stroke-width="1.8" marker-end="url(#ar)">
+        <line x1="217" y1="105" x2="240" y2="105"/><line x1="440" y1="105" x2="463" y2="105"/><line x1="663" y1="105" x2="686" y2="105"/>
+      </g>
+      <rect x="20" y="210" width="864" height="70" rx="10" fill="#FFFFFF" stroke="#D2461E" stroke-dasharray="5 4"/>
+      <text x="40" y="240" class="sv-t" font-size="14" font-weight="700">所以問題變成量產：</text>
+      <text x="180" y="240" class="sv-s" font-size="13.5">一座電廠約需 5,000 萬條雷射巴條（~50 GW），每瓦要從 $0.30–1.30 降到 $0.01，</text>
+      <text x="180" y="262" class="sv-s" font-size="13.5">每顆還要能打 10 億發。這是半導體產業擅長的問題，不是核物理的問題。</text>
+    </svg>
+    </div>
+    <figcaption>箭頭方向代表「靠什麼來運作」：電廠靠雷射，雷射靠幫浦光，幫浦光靠晶片。</figcaption>
+  </figure>
+  <div class="prose">
+    <p>常見的誤會是砷化鎵雷射直接打燃料。其實它的光太弱、波長也不對，要經過三次轉手：<b>先灌能量給雷射材料 → 放大成高能光束 → 轉成紫外光</b>，最後才打到靶丸上。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 0B　光的旅程：從砷化鎵晶片到核融合燃料</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 470" role="img" aria-label="砷化鎵雷射二極體幫浦主雷射，最後打擊核融合靶丸的光路示意圖">
+      <defs>
+        <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15222C"/></marker>
+        <radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFF4C2"/><stop offset="55%" stop-color="#F2A93B"/><stop offset="100%" stop-color="#D2461E"/></radialGradient>
+      </defs>
+
+      <!-- step labels -->
+      <g class="sv-m" font-size="12" style="fill:#D2461E">
+        <text x="200" y="24" style="fill:#D2461E">① 晶片發光 → ② 灌進雷射材料</text>
+        <text x="425" y="24" style="fill:#D2461E">③ 放大、轉紫外光</text>
+        <text x="660" y="24" style="fill:#D2461E">④ 打靶</text>
+      </g>
+
+      <!-- 1. diode arrays top and bottom -->
+      <g>
+        <rect x="200" y="42" width="200" height="26" rx="4" fill="#E1EEF8" stroke="#1F6FB2"/>
+        <g fill="#6A3FC8"><rect x="212" y="62" width="14" height="6"/><rect x="238" y="62" width="14" height="6"/><rect x="264" y="62" width="14" height="6"/><rect x="290" y="62" width="14" height="6"/><rect x="316" y="62" width="14" height="6"/><rect x="342" y="62" width="14" height="6"/><rect x="368" y="62" width="14" height="6"/></g>
+        <rect x="200" y="192" width="200" height="26" rx="4" fill="#E1EEF8" stroke="#1F6FB2"/>
+        <g fill="#6A3FC8"><rect x="212" y="192" width="14" height="6"/><rect x="238" y="192" width="14" height="6"/><rect x="264" y="192" width="14" height="6"/><rect x="290" y="192" width="14" height="6"/><rect x="316" y="192" width="14" height="6"/><rect x="342" y="192" width="14" height="6"/><rect x="368" y="192" width="14" height="6"/></g>
+        <!-- pump rays -->
+        <g stroke="#6A3FC8" stroke-width="2" opacity=".55">
+          <line x1="219" y1="70" x2="219" y2="108"/><line x1="245" y1="70" x2="245" y2="108"/><line x1="271" y1="70" x2="271" y2="108"/><line x1="297" y1="70" x2="297" y2="108"/><line x1="323" y1="70" x2="323" y2="108"/><line x1="349" y1="70" x2="349" y2="108"/><line x1="375" y1="70" x2="375" y2="108"/>
+          <line x1="219" y1="190" x2="219" y2="152"/><line x1="245" y1="190" x2="245" y2="152"/><line x1="271" y1="190" x2="271" y2="152"/><line x1="297" y1="190" x2="297" y2="152"/><line x1="323" y1="190" x2="323" y2="152"/><line x1="349" y1="190" x2="349" y2="152"/><line x1="375" y1="190" x2="375" y2="152"/>
+        </g>
+      </g>
+      <!-- gain medium slab -->
+      <rect x="200" y="108" width="200" height="44" rx="4" fill="#ECE6FA" stroke="#6A3FC8" stroke-width="1.5"/>
+      <text x="300" y="135" text-anchor="middle" class="sv-t" font-size="12.5" font-weight="700">雷射玻璃／晶體</text>
+
+      <!-- seed laser -->
+      <rect x="30" y="112" width="110" height="36" rx="6" fill="#F1F5F8" stroke="#4A5A66"/>
+      <text x="85" y="135" text-anchor="middle" class="sv-t" font-size="12.5">種子雷射（弱）</text>
+      <line x1="140" y1="130" x2="200" y2="130" stroke="#D2461E" stroke-width="2"/>
+
+      <!-- amplified beam -->
+      <rect x="400" y="120" width="70" height="20" fill="#D2461E" opacity=".85"/>
+      <text x="435" y="110" text-anchor="middle" class="sv-s" font-size="11.5">放大後</text>
+      <!-- frequency converter -->
+      <polygon points="470,105 510,105 520,155 480,155" fill="#FFFFFF" stroke="#15222C" stroke-width="1.5"/>
+      <text x="495" y="176" text-anchor="middle" class="sv-s" font-size="11.5">倍頻晶體</text>
+      <!-- UV beam -->
+      <rect x="515" y="120" width="120" height="20" fill="#4B3FD1" opacity=".85"/>
+
+      <!-- target chamber -->
+      <circle cx="740" cy="130" r="95" fill="#F1F5F8" stroke="#4A5A66" stroke-width="2"/>
+      <text x="740" y="248" text-anchor="middle" class="sv-s" font-size="12">靶室（真空）</text>
+      <g stroke="#4B3FD1" stroke-width="5" opacity=".75">
+        <line x1="645" y1="130" x2="722" y2="130"/>
+        <line x1="758" y1="130" x2="835" y2="130"/>
+        <line x1="673" y1="63" x2="727" y2="117"/>
+        <line x1="807" y1="63" x2="753" y2="117"/>
+        <line x1="673" y1="197" x2="727" y2="143"/>
+        <line x1="807" y1="197" x2="753" y2="143"/>
+      </g>
+      <circle cx="740" cy="130" r="13" fill="url(#hot)" class="pulse"/>
+      <line x1="640" y1="130" x2="645" y2="130" stroke="#4B3FD1" stroke-width="5"/>
+
+      <!-- wavelength annotations -->
+      <g font-size="12">
+        <text x="200" y="236" class="sv-t" font-weight="700">砷化鎵二極體陣列</text>
+        <text x="200" y="254" class="sv-s">發出 ~800–940 nm 紅外光</text>
+        <text x="200" y="272" class="sv-s">（這就是半導體晶片的角色）</text>
+        <text x="420" y="200" class="sv-t" font-weight="700">1053 nm 紅外 → 351 nm 紫外</text>
+        <text x="420" y="218" class="sv-s">紫外光被靶吸收得更好</text>
+      </g>
+
+      <!-- divider -->
+      <line x1="30" y1="300" x2="870" y2="300" stroke="#D6DEE5" stroke-width="1.5"/>
+      <text x="30" y="326" class="sv-t" font-size="14" font-weight="700">放大靶丸：幾奈秒內發生的三件事</text>
+
+      <!-- implosion stages -->
+      <g>
+        <!-- stage 1 -->
+        <circle cx="150" cy="395" r="42" fill="#FBE7E0" stroke="#D2461E" stroke-width="3"/>
+        <circle cx="150" cy="395" r="30" fill="#FFFFFF" stroke="#4A5A66" stroke-width="1"/>
+        <g stroke="#4B3FD1" stroke-width="2.5"><line x1="80" y1="395" x2="104" y2="395"/><line x1="220" y1="395" x2="196" y2="395"/><line x1="150" y1="335" x2="150" y2="350"/><line x1="150" y1="455" x2="150" y2="440"/></g>
+        <g stroke="#D2461E" stroke-width="1.5" opacity=".7"><line x1="112" y1="365" x2="100" y2="352"/><line x1="188" y1="365" x2="200" y2="352"/><line x1="112" y1="425" x2="100" y2="438"/><line x1="188" y1="425" x2="200" y2="438"/></g>
+        <text x="240" y="380" class="sv-t" font-size="13" font-weight="700">1 燒蝕</text>
+        <text x="240" y="398" class="sv-s" font-size="12">外殼被加熱噴出，</text>
+        <text x="240" y="415" class="sv-s" font-size="12">反作用力把燃料往內推</text>
+        <!-- arrow -->
+        <line x1="370" y1="395" x2="400" y2="395" stroke="#15222C" stroke-width="1.5" marker-end="url(#ar2)"/>
+        <!-- stage 2 -->
+        <circle cx="450" cy="395" r="20" fill="#F2A93B" opacity=".5"/>
+        <circle cx="450" cy="395" r="12" fill="#D2461E" opacity=".75"/>
+        <g stroke="#15222C" stroke-width="1.2" marker-end="url(#ar2)"><line x1="420" y1="395" x2="432" y2="395"/><line x1="480" y1="395" x2="468" y2="395"/><line x1="450" y1="365" x2="450" y2="377"/><line x1="450" y1="425" x2="450" y2="413"/></g>
+        <text x="495" y="380" class="sv-t" font-size="13" font-weight="700">2 壓縮</text>
+        <text x="495" y="398" class="sv-s" font-size="12">燃料被壓到比鉛</text>
+        <text x="495" y="415" class="sv-s" font-size="12">密度高上百倍</text>
+        <line x1="605" y1="395" x2="635" y2="395" stroke="#15222C" stroke-width="1.5" marker-end="url(#ar2)"/>
+        <!-- stage 3 -->
+        <circle cx="690" cy="395" r="34" fill="url(#hot)" opacity=".35"/>
+        <circle cx="690" cy="395" r="9" fill="url(#hot)"/>
+        <g stroke="#F2A93B" stroke-width="2"><line x1="690" y1="395" x2="690" y2="357"/><line x1="690" y1="395" x2="725" y2="378"/><line x1="690" y1="395" x2="722" y2="420"/><line x1="690" y1="395" x2="656" y2="418"/><line x1="690" y1="395" x2="654" y2="376"/></g>
+        <text x="740" y="380" class="sv-t" font-size="13" font-weight="700">3 點火</text>
+        <text x="740" y="398" class="sv-s" font-size="12">中心上億度，氘＋氚</text>
+        <text x="740" y="415" class="sv-s" font-size="12">融合放出中子與能量</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>NIF 是「間接驅動」：雷射先打進一個金色小圓筒，產生 X 光再均勻壓縮靶丸。這裡為了看清楚，畫成雷射直接照射。NIF 現在的幫浦光源是閃光燈，電廠要換成圖中的砷化鎵二極體陣列，因為閃光燈打不快也不夠有效率。</figcaption>
+  </figure>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>第 3 層的關鍵替換</th><th>閃光燈（NIF 現在用的）</th><th>半導體雷射二極體（電廠要用的）</th></tr></thead>
+      <tbody>
+        <tr><td>原理</td><td>像巨大的相機閃光燈</td><td>通電就發出雷射的晶片</td></tr>
+        <tr><td>電變光的效率</td><td class="lose">低，整體雷射效率不到 1%</td><td class="win">50–70%</td></tr>
+        <tr><td>射擊速度</td><td class="lose">打一發要冷卻數小時</td><td class="win">可每秒 10 發以上</td></tr>
+        <tr><td>壽命</td><td class="lose">短，要頻繁更換</td><td class="win">長，目標 10 億發</td></tr>
+        <tr><td>生活中的例子</td><td>相機閃光燈</td><td>牙科 810／980 nm 二極體雷射、雷射筆</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="two">
+    <div class="card"><h3>台灣的位置 ①：晶圓代工</h3><p style="font-size:15px">全球最大的純砷化鎵晶圓代工廠穩懋，還有宏捷科，都在台灣。它們原本做手機射頻晶片和 iPhone 臉部辨識用的 VCSEL，技術可以轉用在幫浦雷射上。</p></div>
+    <div class="card"><h3>台灣的位置 ②：封裝</h3><p style="font-size:15px">雷射二極體的成本有一半以上在封裝（貼片、對準、散熱），而且大多還是手工。台灣有全世界最密集的先進封裝生態系，自動化是降價的關鍵。</p></div>
+  </div>
+  <p class="quote">電廠的能量來自核融合，點火的雷射來自半導體晶片。</p>
+</section>
+
+<section id="s0" aria-label="關鍵數字">
+  <div class="nums">
+    <div class="num"><div class="v">4.13</div><div class="k">NIF 目前最高的「靶增益」（2025/4：輸入 2.08 MJ，產出 8.6 MJ）</div></div>
+    <div class="num"><div class="v">30–100</div><div class="k">雷射核融合電廠需要的靶增益</div></div>
+    <div class="num"><div class="v">~5萬<small>倍</small></div><div class="k">從實驗室每天幾發，到電廠每秒約 10 發的射擊頻率差距</div></div>
+    <div class="num"><div class="v">$0.01<small>/W</small></div><div class="k">DOE 設定的二極體幫浦成本目標，現在是 $0.30–1.30/W</div></div>
+    <div class="num"><div class="v">~50<small>GW</small></div><div class="k">一座雷射核融合電廠所需的二極體峰值功率，約 5,000 萬條雷射巴條</div></div>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="sec-head"><div class="sec-no">01 · 背景</div><h2>為什麼科技巨頭現在就開始搶電？</h2></div>
+  <div class="prose">
+    <p>AI 資料中心是 24 小時滿載的負載，需要的是<b>穩定、無碳、可以簽長約</b>的基載電力。風光發電有間歇性，天然氣有碳排問題，所以核能重新變成熱門選項。</p>
+    <p>巨頭用兩種方式下注：短期買現成的核分裂電力，長期簽下還不存在的核融合電力。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 1　科技巨頭的能源時間軸：近端鎖定核分裂，遠端押注核融合</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 250" role="img" aria-label="科技巨頭能源布局時間軸">
+      <line x1="40" y1="130" x2="870" y2="130" stroke="#15222C" stroke-width="2"/>
+      <g class="sv-m" font-size="13">
+        <text x="60" y="155">2024</text><text x="250" y="155">2027</text><text x="440" y="155">2028</text><text x="630" y="155">2030s</text><text x="800" y="155">2040+</text>
+      </g>
+      <g fill="#1F6FB2"><circle cx="75" cy="130" r="6"/><circle cx="265" cy="130" r="6"/></g>
+      <g fill="#D2461E"><circle cx="455" cy="130" r="6"/><circle cx="645" cy="130" r="6"/><circle cx="815" cy="130" r="6"/></g>
+      <rect x="40" y="20" width="300" height="80" rx="8" fill="#E1EEF8"/>
+      <text x="56" y="46" class="sv-t" font-size="14" font-weight="700">核分裂：買現成的電</text>
+      <text x="56" y="68" class="sv-s" font-size="12.5">微軟 × Constellation：重啟三哩島 1 號機</text>
+      <text x="56" y="86" class="sv-s" font-size="12.5">（835 MW、20 年購電約，預計 2027 年併網）</text>
+      <rect x="380" y="20" width="490" height="80" rx="8" fill="#FBE7E0"/>
+      <text x="396" y="46" class="sv-t" font-size="14" font-weight="700">核融合：預購還不存在的電</text>
+      <text x="396" y="68" class="sv-s" font-size="12.5">微軟 × Helion：2028 年起供電的購電約</text>
+      <text x="396" y="86" class="sv-s" font-size="12.5">Google × CFS：預購 ARC 電廠 200 MW（2030 年代初）</text>
+      <text x="40" y="200" class="sv-t" font-size="13.5" font-weight="700">邏輯：</text>
+      <text x="90" y="200" class="sv-s" font-size="13.5">核分裂解決「現在不夠電」，核融合是用少量資金換取未來的優先購買權（實質選擇權）。</text>
+      <text x="90" y="224" class="sv-s" font-size="13.5">對一年資本支出上千億美元的公司來說，這些合約相當便宜。</text>
+    </svg>
+    </div>
+    <figcaption>藍色為核分裂布局，紅色為核融合布局。購電協議（PPA）的日期是合約目標，不代表技術已經就緒。</figcaption>
+  </figure>
+  <div class="theory">
+    <div class="tag">理論透鏡 · 實質選擇權（Real Options）</div>
+    <h3>為什麼要先買還沒商轉的電？</h3>
+    <p>金融選擇權的價值來自不確定性：波動越大，選擇權越值錢。核融合商轉的時間非常不確定，巨頭用相對小的承諾（購電約、策略投資）買下「如果成功，我排第一」的權利。失敗的話損失有限，成功的話就鎖定了未來幾十年的無碳基載電力。這也說明為什麼巨頭會同時押注好幾家技術路線不同的公司。</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="sec-head"><div class="sec-no">02 · 基礎</div><h2>核融合的兩條路：磁場關住，或雷射壓扁</h2></div>
+  <div class="prose">
+    <p>核融合要讓氘和氚的原子核撞在一起。它們都帶正電、彼此排斥，所以必須同時達到極高溫度、足夠密度和足夠長的約束時間，這就是<b>勞森判據（Lawson criterion）</b>，常用「三重積」n·T·τ 來衡量。</p>
+    <p>兩條主要路線用不同方式湊齊這三個條件。這集訪談談的是右邊這一條。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 2　磁約束 vs. 慣性約束</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 320" role="img" aria-label="磁約束與慣性約束比較示意圖">
+      <!-- MCF -->
+      <text x="215" y="30" text-anchor="middle" class="sv-t" font-size="16" font-weight="700">磁約束（托卡馬克）</text>
+      <ellipse cx="215" cy="140" rx="150" ry="70" fill="none" stroke="#1F6FB2" stroke-width="16" opacity=".25"/>
+      <ellipse cx="215" cy="140" rx="150" ry="70" fill="none" stroke="#1F6FB2" stroke-width="2"/>
+      <ellipse cx="215" cy="140" rx="70" ry="28" fill="#FBFCFD" stroke="#1F6FB2" stroke-width="2"/>
+      <ellipse cx="215" cy="140" rx="112" ry="48" fill="none" stroke="#D2461E" stroke-width="5" opacity=".75"/>
+      <text x="215" y="145" text-anchor="middle" class="sv-s" font-size="12">電漿環</text>
+      <text x="215" y="240" text-anchor="middle" class="sv-s" font-size="13">低密度 × 長時間（秒～連續）</text>
+      <text x="215" y="262" text-anchor="middle" class="sv-s" font-size="13">代表：ITER、CFS、Tokamak Energy</text>
+      <text x="215" y="290" text-anchor="middle" class="sv-t" font-size="13" font-weight="700">工程挑戰：超導磁鐵、材料</text>
+      <line x1="450" y1="30" x2="450" y2="300" stroke="#D6DEE5" stroke-width="1.5"/>
+      <!-- ICF -->
+      <text x="680" y="30" text-anchor="middle" class="sv-t" font-size="16" font-weight="700">慣性約束（雷射）</text>
+      <g stroke="#D2461E" stroke-width="3">
+        <line x1="560" y1="60" x2="655" y2="120"/><line x1="800" y1="60" x2="705" y2="120"/>
+        <line x1="560" y1="220" x2="655" y2="160"/><line x1="800" y1="220" x2="705" y2="160"/>
+        <line x1="530" y1="140" x2="640" y2="140"/><line x1="830" y1="140" x2="720" y2="140"/>
+      </g>
+      <circle cx="680" cy="140" r="32" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/>
+      <circle cx="680" cy="140" r="11" fill="#D2461E" class="pulse"/>
+      <text x="680" y="198" text-anchor="middle" class="sv-s" font-size="12">燃料靶丸（毫米級）</text>
+      <text x="680" y="240" text-anchor="middle" class="sv-s" font-size="13">極高密度 × 極短時間（奈秒）</text>
+      <text x="680" y="262" text-anchor="middle" class="sv-s" font-size="13">代表：NIF、Focused Energy、Xcimer</text>
+      <text x="680" y="290" text-anchor="middle" class="sv-t" font-size="13" font-weight="700">工程挑戰：雷射效率、射擊頻率、靶丸量產</text>
+    </svg>
+    </div>
+    <figcaption>兩條路都在追求同樣的三重積，只是配方相反。雷射路線的物理已在 NIF 證明可以點火，<b>剩下的問題大多屬於製造和成本</b>，這正是訪談的切入點。</figcaption>
+  </figure>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="sec-head"><div class="sec-no">03 · 核心觀念</div><h2>真假 Q 值：能量大於一，為什麼插頭還是不夠電？</h2></div>
+  <div class="prose">
+    <p>新聞說「核融合產出能量大於輸入」，指的是<b>靶增益</b>：雷射打到靶上的能量，和核融合釋放能量的比值。但一座電廠要算的是從插頭拿了多少電、最後送回多少電。中間每一段都有損耗。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 3　NIF 2025/4 紀錄發射的能量鏈（以對數寬度示意）</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 300" role="img" aria-label="NIF 能量鏈">
+      <!-- bars; widths approx log scale -->
+      <g font-size="13">
+        <rect x="40" y="40" width="820" height="36" rx="4" fill="#15222C"/>
+        <text x="52" y="63" fill="#FFFFFF" class="sv-t" style="fill:#fff" font-weight="700">① 從電網取電（驅動閃光燈） ≈ 300 MJ 級</text>
+        <rect x="40" y="100" width="210" height="36" rx="4" fill="#6A3FC8"/>
+        <text x="262" y="123" class="sv-t" font-weight="700">② 打到靶上的雷射能量 2.08 MJ</text>
+        <text x="560" y="123" class="sv-s">雷射整體效率 &lt; 1%</text>
+        <rect x="40" y="160" width="290" height="36" rx="4" fill="#D2461E"/>
+        <text x="342" y="183" class="sv-t" font-weight="700">③ 核融合產出 8.6 MJ</text>
+        <text x="560" y="183" class="sv-s">靶增益 Q<tspan baseline-shift="sub" font-size="10">target</tspan> = 4.13</text>
+        <rect x="40" y="220" width="170" height="36" rx="4" fill="#2E8A57"/>
+        <text x="222" y="243" class="sv-t" font-weight="700">④ 若轉成電（熱機 ~40%）≈ 3.4 MJ</text>
+        <text x="560" y="243" class="sv-s">插頭對插頭 Q<tspan baseline-shift="sub" font-size="10">eng</tspan> ≈ 0.01</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>①的數值是 NIF 閃光燈系統的量級估計；④是假設性換算，NIF 本身不發電。重點在比例：<b>靶增益 4 倍，換到插頭端只剩約百分之一</b>。</figcaption>
+  </figure>
+  <div class="theory">
+    <div class="tag">理論透鏡 · 能量鏈連乘</div>
+    <h3>Q<sub>eng</sub> ≈ η<sub>雷射</sub> × Q<sub>target</sub> × η<sub>發電</sub></h3>
+    <p>要讓電廠有淨輸出，並把約 25% 的電回送給雷射，粗估需要 η<sub>雷射</sub> × Q<sub>target</sub> 達到 10 左右。這就是為什麼業界說電廠要靶增益 30–100。兩條路同時進行：物理學家把 Q<sub>target</sub> 往上推，工程師把 η<sub>雷射</sub> 從不到 1% 拉到 10% 以上。後者的關鍵是把 NIF 使用的<b>閃光燈換成半導體雷射二極體</b>，也就是 Jim 的公司在做的事。</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <div class="sec-head"><div class="sec-no">04 · 訪談主軸</div><h2>五萬倍的製造牆</h2></div>
+  <div class="prose">
+    <p>NIF 是一台科學裝置，一天只能打幾發，每發之後要花好幾個小時冷卻。電廠要像引擎一樣連續運轉：每秒約 10 發，一年約 3 億發，連續幾十年。</p>
+    <p class="quote">點火證明了物理可行。電廠要的是每秒打十次、一年打幾億次，還不能壞。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 4　射擊頻率：實驗室 vs. 電廠（對數刻度）</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 250" role="img" aria-label="射擊頻率對數比較">
+      <line x1="60" y1="190" x2="860" y2="190" stroke="#15222C" stroke-width="1.5"/>
+      <!-- log ticks: 1e-5 .. 1e2 Hz, 8 decades, 100px each -->
+      <g class="sv-m" font-size="12" text-anchor="middle">
+        <line x1="60" y1="190" x2="60" y2="196" stroke="#15222C"/><text x="60" y="214">10⁻⁵</text>
+        <line x1="160" y1="190" x2="160" y2="196" stroke="#15222C"/><text x="160" y="214">10⁻⁴</text>
+        <line x1="260" y1="190" x2="260" y2="196" stroke="#15222C"/><text x="260" y="214">10⁻³</text>
+        <line x1="360" y1="190" x2="360" y2="196" stroke="#15222C"/><text x="360" y="214">10⁻²</text>
+        <line x1="460" y1="190" x2="460" y2="196" stroke="#15222C"/><text x="460" y="214">10⁻¹</text>
+        <line x1="560" y1="190" x2="560" y2="196" stroke="#15222C"/><text x="560" y="214">1</text>
+        <line x1="660" y1="190" x2="660" y2="196" stroke="#15222C"/><text x="660" y="214">10</text>
+        <line x1="760" y1="190" x2="760" y2="196" stroke="#15222C"/><text x="760" y="214">100</text>
+      </g>
+      <text x="860" y="214" text-anchor="end" class="sv-s" font-size="12">Hz（每秒發數）</text>
+      <!-- NIF ~ 1 shot / 5000 s = 2e-4 Hz -> log=-3.7 -> x = 60 + 1.3*100 = 190 -->
+      <rect x="60" y="120" width="130" height="50" fill="#6A3FC8" opacity=".85"/>
+      <text x="70" y="110" class="sv-t" font-size="13" font-weight="700">NIF：約每 1–2 小時 1 發</text>
+      <!-- plant 10 Hz -> x=660 -->
+      <rect x="60" y="36" width="600" height="50" fill="#D2461E" opacity=".85"/>
+      <text x="670" y="66" class="sv-t" font-size="13" font-weight="700">電廠：~10 Hz</text>
+      <line x1="190" y1="145" x2="655" y2="145" stroke="#15222C" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="420" y="162" text-anchor="middle" class="sv-t" font-size="14" font-weight="700">差距 ≈ 4.7 個數量級 ≈ 5 萬倍</text>
+    </svg>
+    </div>
+    <figcaption>以 NIF 最佳情況約每 5,000 秒一發估算，10 Hz ÷ 0.0002 Hz ≈ 50,000。實際 NIF 通常一天只打一、兩發高能量發射，所以真正差距更大。</figcaption>
+  </figure>
+  <div class="two">
+    <div class="card"><h3>要打得快</h3><ul><li>閃光燈發熱大、壽命短，不能每秒 10 發</li><li>必須換成<b>二極體雷射幫浦</b>（DPSSL）</li><li>一座電廠需要 ~50 GW 峰值二極體功率</li></ul></div>
+    <div class="card"><h3>要打得便宜</h3><ul><li>現在二極體約 $0.30–1.30 / W</li><li>電廠要 ~$0.01 / W，差 30–100 倍</li><li>約 5,000 萬條巨條，是全球年產量的好幾倍</li></ul></div>
+    <div class="card"><h3>要打得久</h3><ul><li>每個模組要撐 10 億發以上</li><li>上千萬個模組，不可能逐一離線檢修</li><li>需要可預測的<b>漸進式老化</b>，不能突然死亡</li></ul></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <div class="sec-head"><div class="sec-no">05 · 技術拆解</div><h2>雷射的心臟：邊射型 vs. 面射型二極體</h2></div>
+  <div class="prose">
+    <p>幫浦二極體把電變成光，再用光去「餵」主雷射的增益介質。現在業界主流是<b>邊射型</b>（EEL），光從晶片側邊的切面射出。Jim 押注的是<b>面射型</b>（VCSEL，以及更新的 PCSEL），光從晶片表面垂直射出。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 5　出光方向決定了封裝、測試與失效方式</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 300" role="img" aria-label="邊射型與面射型雷射比較">
+      <!-- EEL -->
+      <text x="220" y="30" text-anchor="middle" class="sv-t" font-size="16" font-weight="700">邊射型 EEL（現行主流）</text>
+      <polygon points="80,150 280,150 320,120 120,120" fill="#E1EEF8" stroke="#1F6FB2" stroke-width="1.5"/>
+      <polygon points="80,150 280,150 280,190 80,190" fill="#F1F5F8" stroke="#1F6FB2" stroke-width="1.5"/>
+      <polygon points="280,150 320,120 320,160 280,190" fill="#D6DEE5" stroke="#1F6FB2" stroke-width="1.5"/>
+      <rect x="80" y="165" width="200" height="6" fill="#D2461E"/>
+      <polygon points="300,160 400,120 400,215" fill="#D2461E" opacity=".35"/>
+      <text x="410" y="140" class="sv-s" font-size="12">光束扁平</text>
+      <text x="410" y="156" class="sv-s" font-size="12">發散不對稱</text>
+      <circle cx="300" cy="168" r="10" fill="none" stroke="#15222C" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <text x="150" y="222" class="sv-t" font-size="12.5" font-weight="700">出光切面（易燒毀）</text>
+      <line x1="245" y1="215" x2="295" y2="178" stroke="#15222C" stroke-width="1"/>
+      <text x="80" y="260" class="sv-s" font-size="12.5">切割成巨條才能測試 → 手工對準準直透鏡</text>
+      <line x1="450" y1="40" x2="450" y2="280" stroke="#D6DEE5" stroke-width="1.5"/>
+      <!-- VCSEL -->
+      <text x="680" y="30" text-anchor="middle" class="sv-t" font-size="16" font-weight="700">面射型 VCSEL / PCSEL</text>
+      <polygon points="540,200 780,200 820,170 580,170" fill="#ECE6FA" stroke="#6A3FC8" stroke-width="1.5"/>
+      <polygon points="540,200 780,200 780,225 540,225" fill="#F1F5F8" stroke="#6A3FC8" stroke-width="1.5"/>
+      <g fill="#D2461E">
+        <ellipse cx="600" cy="186" rx="10" ry="4"/><ellipse cx="650" cy="186" rx="10" ry="4"/><ellipse cx="700" cy="186" rx="10" ry="4"/><ellipse cx="750" cy="186" rx="10" ry="4"/>
+      </g>
+      <g fill="#D2461E" opacity=".3">
+        <polygon points="592,184 608,184 616,70 584,70"/><polygon points="642,184 658,184 666,70 634,70"/><polygon points="692,184 708,184 716,70 684,70"/><polygon points="742,184 758,184 766,70 734,70"/>
+      </g>
+      <text x="680" y="60" text-anchor="middle" class="sv-s" font-size="12">圓形對稱光束、可做成 2D 陣列</text>
+      <text x="540" y="260" class="sv-s" font-size="12.5">整片晶圓就能測試 → 可用半導體自動化封裝</text>
+    </svg>
+    </div>
+    <figcaption>邊射型的主要失效是<b>切面災變性光學損傷（COD）</b>，會毫無預警地突然壞掉。面射型沒有外露切面，老化是漸進的，因此可以用數據預測何時該換。</figcaption>
+  </figure>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>比較項目</th><th>邊射型 EEL</th><th>面射型 VCSEL / PCSEL</th></tr></thead>
+      <tbody>
+        <tr><td>光譜寬度</td><td class="n">2–3 nm</td><td class="n win">&lt; 1 nm</td></tr>
+        <tr><td>波長溫漂</td><td class="n">0.3 nm/°C（要主動冷卻）</td><td class="n win">0.065 nm/°C（−40～71°C 免 TEC）</td></tr>
+        <tr><td>突發失效率</td><td>COD 是主要失效模式</td><td class="win">無切面，約降 50 倍（Jim 估計）</td></tr>
+        <tr><td>測試時機</td><td>切成巨條後</td><td class="win">晶圓階段</td></tr>
+        <tr><td>插電效率</td><td class="win">最高 ~76%</td><td class="lose">落後 15–20 個百分點（差距在縮小）</td></tr>
+        <tr><td>亮度</td><td class="win">高</td><td class="lose">低一個數量級以上</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="theory">
+    <div class="tag">理論透鏡 · 可靠度工程</div>
+    <h3>「隨機突然死亡」和「漸進老化」是兩種完全不同的維修經濟學</h3>
+    <p>突然死亡型的失效（浴缸曲線的隨機失效段）只能靠保守的定期更換，平均壽命還沒到就得換掉，浪費很大。漸進老化型的失效會留下可量測的徵兆，例如順向電壓緩慢上升或脈衝中段光功率下垂，可以做<b>預測性維護</b>。Holonomy 的「Photon Brick」模組記錄每一發的電壓、光功率、溫度與發數。在上千萬個模組的規模下，「這一顆再撐 M 發就要換」和「全部每 N 發換一次」的成本差距，可能決定一座電廠能不能運轉。</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="s6">
+  <div class="sec-head"><div class="sec-no">06 · 理論分析</div><h2>成本要降 30–100 倍，要量產多少才做得到？</h2></div>
+  <div class="prose">
+    <p>二極體每瓦成本已經從 1987 年約 $2,000 降到今天的 $0.30–1.30，降了三個數量級以上。<b>萊特定律（Wright's Law）</b>描述了這種現象：累積產量每翻一倍，單位成本下降固定比例，這個比例叫做學習率。</p>
+    <p>把它倒過來算，就能知道從 $0.30 降到 $0.01 需要多少量產。拖動滑桿試試：</p>
+  </div>
+  <div class="calc">
+    <label for="lr">學習率（每翻倍降價比例）：<span id="lrv" class="mono">20%</span></label>
+    <input id="lr" type="range" min="10" max="40" step="1" value="20">
+    <label for="startp">起點成本：<span id="spv" class="mono">$0.30/W</span></label>
+    <input id="startp" type="range" min="0" max="2" step="1" value="0">
+    <div class="calc-out">
+      <div><span class="v" id="o-gap">30×</span><span class="k">需要下降的倍數（到 $0.01/W）</span></div>
+      <div><span class="v" id="o-dbl">15.2</span><span class="k">累積產量需翻倍的次數</span></div>
+      <div><span class="v" id="o-vol">3.9萬×</span><span class="k">累積產量需成長為今天的</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--ink2)">半導體與太陽能的歷史學習率大約落在 20–30%。學習率越高，需要的量產規模下降得越快，這也是 Jim 要改變封裝方式的原因：他想提高學習率，而不只是等待量產。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 6　二極體每瓦成本：歷史、現在與目標（對數刻度）</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 300" role="img" aria-label="二極體成本學習曲線">
+      <!-- y: log $ from 0.01 (y=250) to 10000 (y=30): 6 decades, ~36.7px each -->
+      <g class="sv-m" font-size="12" text-anchor="end">
+        <text x="72" y="254">$0.01</text><text x="72" y="217">$0.1</text><text x="72" y="180">$1</text><text x="72" y="144">$10</text><text x="72" y="107">$100</text><text x="72" y="70">$1k</text><text x="72" y="34">$10k</text>
+      </g>
+      <g stroke="#D6DEE5" stroke-width="1">
+        <line x1="80" y1="250" x2="860" y2="250"/><line x1="80" y1="213" x2="860" y2="213"/><line x1="80" y1="176" x2="860" y2="176"/><line x1="80" y1="140" x2="860" y2="140"/><line x1="80" y1="103" x2="860" y2="103"/><line x1="80" y1="66" x2="860" y2="66"/><line x1="80" y1="30" x2="860" y2="30"/>
+      </g>
+      <!-- 1987 $2000 -> log 3.3 -> y = 250 - (3.3+2)*36.7 = 55.5 ; x=120 -->
+      <!-- today ~$0.5 -> log -0.3 -> y= 250-1.7*36.7=187.6 ; x=520 -->
+      <!-- target $0.01 -> y=250 ; x=800 -->
+      <path d="M120,55 L520,188" stroke="#15222C" stroke-width="2.5" fill="none"/>
+      <path d="M520,188 L800,250" stroke="#D2461E" stroke-width="2.5" fill="none" stroke-dasharray="7 5"/>
+      <circle cx="120" cy="55" r="6" fill="#15222C"/>
+      <rect x="512" y="165" width="16" height="43" rx="3" fill="#6A3FC8" opacity=".4"/>
+      <circle cx="520" cy="188" r="6" fill="#6A3FC8"/>
+      <circle cx="800" cy="250" r="7" fill="#D2461E"/>
+      <text x="132" y="50" class="sv-t" font-size="13" font-weight="700">1987：~$2,000/W</text>
+      <text x="536" y="170" class="sv-t" font-size="13" font-weight="700">今天：$0.30–1.30/W</text>
+      <text x="700" y="238" class="sv-t" font-size="13" font-weight="700" text-anchor="end">IFE 目標：$0.01/W</text>
+      <text x="160" y="130" class="sv-s" font-size="12.5">已走完：&gt;1,000 倍</text>
+      <text x="640" y="200" class="sv-s" font-size="12.5">還要走：30–100 倍</text>
+      <text x="120" y="285" class="sv-m" font-size="12" text-anchor="middle">1987</text>
+      <text x="520" y="285" class="sv-m" font-size="12" text-anchor="middle">2026</text>
+      <text x="800" y="285" class="sv-m" font-size="12" text-anchor="middle">?</text>
+    </svg>
+    </div>
+    <figcaption>橫軸只是示意時間順序，不是等比例的年份。虛線這一段的斜率，取決於量產規模（誰來買）和學習率（封裝能否自動化）。</figcaption>
+  </figure>
+  <div class="prose">
+    <p>Jim 提出三股力量來加速這條曲線：</p>
+  </div>
+  <div class="two">
+    <div class="card"><h3>① 架構世代交替</h3><p style="font-size:15px">從邊射型換成面射型。圓形光束省去準直透鏡，晶圓級測試取代巨條篩選。</p></div>
+    <div class="card"><h3>② 封裝工業化</h3><p style="font-size:15px">封裝佔二極體堆疊成本 50% 以上，而且大多仍是手工。面射型讓半導體取放機台可以直接上場。</p></div>
+    <div class="card"><h3>③ 市場排序</h3><p style="font-size:15px">核融合需求還不存在，得先靠國防、工業等中間市場的訂單走完前幾次翻倍。</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="s7">
+  <div class="sec-head"><div class="sec-no">07 · 台灣角色</div><h2>台灣砷化鎵代工，為何是規模化的關鍵？</h2></div>
+  <div class="prose">
+    <p>雷射二極體不是用矽做的，而是<b>砷化鎵（GaAs）等 III-V 族化合物半導體</b>。台灣剛好有全球最大的純砷化鎵晶圓代工廠（穩懋），加上宏捷科等廠商。節目提到，全球約 75% 的砷化鎵外包產能在台灣。這些產線原本主要做手機射頻晶片，以及 iPhone 臉部辨識用的 VCSEL。</p>
+    <p>Jim 的類比是 1987 年台積電把「晶圓製造」從「晶片設計」中拆出來，讓半導體產業分工化。高功率雷射產業到現在仍是從磊晶到封裝一條龍，他想在雷射產業做類似的拆分。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 7　從垂直整合到分層分工：Photon Brick 想卡位的位置</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 330" role="img" aria-label="垂直整合與分層分工比較">
+      <text x="200" y="28" text-anchor="middle" class="sv-t" font-size="15" font-weight="700">現況：垂直整合的雷射大廠</text>
+      <rect x="90" y="45" width="220" height="250" rx="10" fill="#F1F5F8" stroke="#4A5A66" stroke-width="1.5"/>
+      <g class="sv-t" font-size="13" text-anchor="middle">
+        <text x="200" y="85">磊晶</text><text x="200" y="130">晶片製造</text><text x="200" y="175">巨條封裝（手工）</text><text x="200" y="220">幫浦模組</text><text x="200" y="265">雷射系統</text>
+      </g>
+      <g stroke="#D6DEE5"><line x1="110" y1="102" x2="290" y2="102"/><line x1="110" y1="147" x2="290" y2="147"/><line x1="110" y1="192" x2="290" y2="192"/><line x1="110" y1="237" x2="290" y2="237"/></g>
+      <text x="200" y="318" text-anchor="middle" class="sv-s" font-size="12.5">同一家公司包辦，介面不公開</text>
+      <text x="425" y="175" text-anchor="middle" class="sv-t" font-size="28" fill="#D2461E" style="fill:#D2461E">→</text>
+      <text x="680" y="28" text-anchor="middle" class="sv-t" font-size="15" font-weight="700">訪談構想：分層 + 標準介面</text>
+      <g font-size="13">
+        <rect x="520" y="45" width="320" height="40" rx="6" fill="#E1EEF8"/><text x="536" y="70" class="sv-t">磊晶／晶圓代工　<tspan class="sv-s">台灣 GaAs 廠（穩懋、宏捷科…）</tspan></text>
+        <rect x="520" y="95" width="320" height="40" rx="6" fill="#E1EEF8"/><text x="536" y="120" class="sv-t">面射型晶片　<tspan class="sv-s">多家供應商可替換</tspan></text>
+        <rect x="520" y="145" width="320" height="58" rx="6" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/><text x="536" y="170" class="sv-t" font-weight="700">Photon Brick 標準模組</text><text x="536" y="191" class="sv-s" font-size="12">驅動電路＋散熱＋光束整形＋每發遙測</text>
+        <rect x="520" y="213" width="320" height="40" rx="6" fill="#E1EEF8"/><text x="536" y="238" class="sv-t">系統整合商　<tspan class="sv-s">國防、工業、IFE 公司</tspan></text>
+      </g>
+      <text x="680" y="280" text-anchor="middle" class="sv-s" font-size="12.5">客戶只需要：直流電 + 數位指令 → 校準過的幫浦光</text>
+      <text x="680" y="300" text-anchor="middle" class="sv-s" font-size="12.5">美國公司持有 IP、處理出口管制；台灣子公司負責先進封裝</text>
+    </svg>
+    </div>
+    <figcaption>標準化的介面讓上層可以換下層供應商，這是電廠規模下避免單一來源風險的前提。Jim 估計台灣先進封裝生態系帶來 50–60% 的成本優勢，但他強調這是產業密度的結果，不是單純的低成本外包。</figcaption>
+  </figure>
+  <div class="theory">
+    <div class="tag">理論透鏡 · 模組化理論（Christensen）× 微笑曲線</div>
+    <h3>產品「夠好」之後，整合的優勢會轉向模組化</h3>
+    <p>克里斯汀生的模組化理論指出：技術還不成熟時，垂直整合比較有利，因為各部分要緊密磨合；一旦性能超過需求，產業會轉向標準介面，競爭焦點變成成本和速度。個人電腦和半導體都走過這條路。Jim 的判斷是高功率雷射幫浦已經到了這個轉折點。從施振榮的微笑曲線來看，封裝原本在曲線底部，但如果掌握了標準介面和遙測數據，它就可能變成能收取溢價的平台層。</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="s8">
+  <div class="sec-head"><div class="sec-no">08 · 商業策略</div><h2>硬體新創如何去風險：先打灘頭堡</h2></div>
+  <div class="prose">
+    <p>核融合電廠最快也要 2030 年代後期才會大量採購。一家硬體新創撐不了那麼久，所以 Jim 的策略是先找<b>今天就有人付錢</b>、而且需要同一種技術的市場：國防反無人機雷射、太空光通訊、工業雷射。每個市場的營收和量產，都在推動同一條成本曲線往下走。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 8　市場排序：每一階都替下一階付學費</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 290" role="img" aria-label="灘頭堡市場階梯圖">
+      <g font-size="13">
+        <rect x="40" y="200" width="200" height="60" fill="#ECE6FA" stroke="#6A3FC8"/>
+        <text x="52" y="224" class="sv-t" font-weight="700">國防：反無人機雷射</text>
+        <text x="52" y="245" class="sv-s" font-size="12">量小、單價高、重可靠度</text>
+        <rect x="240" y="150" width="200" height="110" fill="#E1EEF8" stroke="#1F6FB2"/>
+        <text x="252" y="174" class="sv-t" font-weight="700">太空光通訊</text>
+        <text x="252" y="195" class="sv-s" font-size="12">耐溫差、免主動冷卻</text>
+        <rect x="440" y="100" width="200" height="160" fill="#F1F5F8" stroke="#4A5A66"/>
+        <text x="452" y="124" class="sv-t" font-weight="700">工業／科學雷射</text>
+        <text x="452" y="145" class="sv-s" font-size="12">量大、推動量產翻倍</text>
+        <rect x="640" y="40" width="220" height="220" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/>
+        <text x="652" y="66" class="sv-t" font-weight="700">核融合電廠（IFE）</text>
+        <text x="652" y="87" class="sv-s" font-size="12">每座 ~5,000 萬條巨條</text>
+        <text x="652" y="106" class="sv-s" font-size="12">需要 $0.01/W、10 億發壽命</text>
+      </g>
+      <line x1="40" y1="275" x2="860" y2="275" stroke="#15222C" stroke-width="1.5"/>
+      <text x="40" y="22" class="sv-s" font-size="12.5">↑ 市場規模 ／ 對成本的要求</text>
+      <text x="860" y="22" class="sv-s" font-size="12.5" text-anchor="end">時間 →</text>
+      <path d="M140,195 Q200,140 330,145" fill="none" stroke="#15222C" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <path d="M340,145 Q420,90 530,95" fill="none" stroke="#15222C" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <path d="M540,95 Q640,30 740,35" fill="none" stroke="#15222C" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <text x="200" y="138" class="sv-s" font-size="11.5">營收＋老化數據</text>
+      <text x="400" y="88" class="sv-s" font-size="11.5">量產＋良率</text>
+      <text x="580" y="36" class="sv-s" font-size="11.5">成本曲線</text>
+    </svg>
+    </div>
+    <figcaption>除了錢，前面幾階還提供了另一項資產：<b>數百萬筆真實環境的老化數據</b>。等到核融合電廠要驗證 10 億發壽命時，這些數據是實驗室加速老化測試無法複製的。</figcaption>
+  </figure>
+  <div class="two">
+    <div class="theory">
+      <div class="tag">理論透鏡 · 跨越鴻溝（Moore）</div>
+      <h3>灘頭堡市場</h3>
+      <p>Geoffrey Moore 主張，新技術要先集中打下一個小而痛點強烈的利基市場，站穩之後再擴張，而不是一開始就追主流市場。國防客戶最在意可靠度和耐環境，比較不在乎效率落後 15–20 個百分點，剛好適合面射型二極體的優缺點組合。</p>
+    </div>
+    <div class="theory">
+      <div class="tag">理論透鏡 · 數據飛輪</div>
+      <h3>每賣一顆，護城河就深一點</h3>
+      <p>每個出貨的模組都在回傳每一發的老化數據，裝機量越大，預測模型越準，產品越可靠，也越容易賣出下一顆。對手要追上，得先有同樣規模的實地部署。這是硬體公司少見、類似軟體平台的網路效應。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="s9">
+  <div class="sec-head"><div class="sec-no">09 · 總整理</div><h2>用六個理論看這場訪談</h2></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>理論</th><th>在訪談中對應的問題</th><th>它推出的結論</th></tr></thead>
+      <tbody>
+        <tr><td><b>勞森判據 / 能量鏈連乘</b></td><td>點火成功為什麼還不能發電？</td><td>Q<sub>target</sub> 和雷射效率要同時提升，後者是工程問題</td></tr>
+        <tr><td><b>萊特定律</b></td><td>$0.01/W 做得到嗎？</td><td>取決於累積產量和學習率；要靠非核融合市場先走完前幾次翻倍</td></tr>
+        <tr><td><b>創新者的兩難</b></td><td>大廠為什麼不自己做？</td><td>標準化會讓自家封裝商品化，面射型會吃掉自家邊射型產品線</td></tr>
+        <tr><td><b>模組化理論 / 微笑曲線</b></td><td>台灣能扮演什麼角色？</td><td>III-V 代工與先進封裝密度讓台灣適合當分工後的製造層</td></tr>
+        <tr><td><b>跨越鴻溝</b></td><td>硬體新創怎麼活到核融合那天？</td><td>先打國防、太空等願意為可靠度付溢價的灘頭堡</td></tr>
+        <tr><td><b>實質選擇權</b></td><td>巨頭為何現在就買核融合電？</td><td>不確定性高時，小額預購換來未來優先權是划算的</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><b>節目的核心訊息：</b>核融合的瓶頸已經從「物理能不能成」移到「供應鏈造不造得出來」。能冷靜面對製造和供應鏈極限的公司，才可能真正參與下一代能源。</div>
+</section>
+
+<!-- 10 -->
+<section id="s10">
+  <div class="sec-head"><div class="sec-no">10 · 批判性閱讀</div><h2>風險與值得追問的地方</h2></div>
+  <div class="prose"><p>這是新創創辦人的觀點，論述完整，但也自然偏向自家押注的路線。以下是閱讀時可以保留的問號：</p></div>
+  <div class="risk">
+    <div class="risk-row"><span class="lvl h">高</span><div><b>靶增益還差一大截。</b>NIF 目前約 4，電廠需要 30–100。如果物理端推不上去，二極體再便宜也沒有用。</div></div>
+    <div class="risk-row"><span class="lvl h">高</span><div><b>面射型的效率與亮度落後。</b>插電效率差 15–20 個百分點，亮度差一個數量級以上。對以效率為命脈的電廠來說，這個差距必須補回來。2024 年有研究做到 74% 的多接面 VCSEL，但是在短脈衝條件下。</div></div>
+    <div class="risk-row"><span class="lvl m">中</span><div><b>成本目標非常陡。</b>用 20% 學習率估算，從 $0.30 降到 $0.01 需要累積產量成長約 4 萬倍。中間市場是否夠大，是整個論述最關鍵的假設。</div></div>
+    <div class="risk-row"><span class="lvl m">中</span><div><b>國防市場帶來出口管制與地緣風險。</b>美台雙實體的結構是解方，但也增加營運複雜度；國防營收占比高，也可能影響能源市場的定位。</div></div>
+    <div class="risk-row"><span class="lvl m">中</span><div><b>路線競爭。</b>磁約束、脈衝電力或準分子雷射路線若先商轉，對二極體的需求規模會完全不同。詳見下方「會不會有更好的發光方式」。</div></div>
+  </div>
+
+  <div class="sec-head" style="margin-top:18px"><h2 style="font-size:clamp(20px,3vw,26px)">這真的是未來趨勢嗎？會不會有更好的發光方式？</h2></div>
+  <div class="prose">
+    <p>這集是新創創辦人在講自己押注的路線，難免偏樂觀。要判斷「是不是趨勢」，得先分清楚是哪一層的趨勢。越上層，越難說。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 10　三層不確定性：每往下一層，都有別的路可能勝出</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 400" role="img" aria-label="核融合技術路線的三層不確定性決策樹">
+      <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4A5A66"/></marker></defs>
+      <!-- main spine -->
+      <g font-size="13.5" font-weight="700">
+        <rect x="30" y="20" width="250" height="44" rx="8" fill="#F1F5F8" stroke="#4A5A66"/>
+        <text x="155" y="47" text-anchor="middle" class="sv-t">核融合發電成功</text>
+        <rect x="30" y="118" width="250" height="44" rx="8" fill="#ECE6FA" stroke="#6A3FC8"/>
+        <text x="155" y="145" text-anchor="middle" class="sv-t">第 1 層：用雷射路線？</text>
+        <rect x="30" y="216" width="250" height="44" rx="8" fill="#FBE7E0" stroke="#D2461E"/>
+        <text x="155" y="243" text-anchor="middle" class="sv-t">第 2 層：用二極體幫浦？</text>
+        <rect x="30" y="314" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#D2461E" stroke-width="2.5"/>
+        <text x="155" y="337" text-anchor="middle" class="sv-t">第 3 層：用面射型？</text>
+        <text x="155" y="356" text-anchor="middle" class="sv-s" font-size="12" font-weight="400">＝ Jim 押注的終點</text>
+      </g>
+      <g stroke="#4A5A66" stroke-width="1.8" marker-end="url(#ar3)">
+        <line x1="155" y1="64" x2="155" y2="115"/><line x1="155" y1="162" x2="155" y2="213"/><line x1="155" y1="260" x2="155" y2="311"/>
+      </g>
+      <g class="sv-s" font-size="12"><text x="165" y="94">是</text><text x="165" y="192">是</text><text x="165" y="290">是</text></g>
+      <!-- branches -->
+      <g stroke="#4A5A66" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ar3)">
+        <line x1="280" y1="42" x2="400" y2="42"/>
+        <line x1="280" y1="140" x2="400" y2="140"/>
+        <line x1="280" y1="238" x2="400" y2="238"/>
+        <line x1="280" y1="340" x2="400" y2="340"/>
+      </g>
+      <g class="sv-s" font-size="12"><text x="300" y="34">或者…</text><text x="300" y="132">不是</text><text x="300" y="230">不是</text><text x="300" y="332">不是</text></g>
+      <g font-size="12.5">
+        <rect x="405" y="14" width="470" height="58" rx="8" fill="#F1F5F8"/>
+        <text x="420" y="38" class="sv-t" font-weight="700">核融合遲遲不成功</text>
+        <text x="420" y="58" class="sv-s">電力改由小型核分裂、地熱、太陽能＋儲能補上</text>
+        <rect x="405" y="104" width="470" height="72" rx="8" fill="#F1F5F8"/>
+        <text x="420" y="128" class="sv-t" font-weight="700">磁場或脈衝電力路線勝出（完全不用雷射）</text>
+        <text x="420" y="148" class="sv-s">托卡馬克：CFS（Google 預購）｜磁化靶：Helion（微軟預購）</text>
+        <text x="420" y="166" class="sv-s">脈衝電力直接壓縮：Pacific Fusion</text>
+        <rect x="405" y="202" width="470" height="72" rx="8" fill="#F1F5F8"/>
+        <text x="420" y="226" class="sv-t" font-weight="700">準分子氣體雷射勝出（不需要幾千萬顆晶片）</text>
+        <text x="420" y="246" class="sv-s">Xcimer：用電子束激發氬氟氣體發出紫外雷射</text>
+        <text x="420" y="264" class="sv-s">主打每焦耳成本更低，這就是「另一種發光方式」</text>
+        <rect x="405" y="306" width="470" height="68" rx="8" fill="#F1F5F8"/>
+        <text x="420" y="330" class="sv-t" font-weight="700">改良版邊射型守住市場</text>
+        <text x="420" y="350" class="sv-s">老牌廠已優化四十年、效率仍較高；</text>
+        <text x="420" y="366" class="sv-s">PCSEL 等新結構也顯示發光方式還在演進</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Jim 的公司要走到最左下角那一格，前面三個路口都要選對。任何一層轉向，二極體在核融合裡的需求規模都會大幅改變。</figcaption>
+  </figure>
+
+  <div class="two">
+    <div class="card" style="border-color:#E9B8A8">
+      <h3 style="color:var(--laser)">不確定：押注層次</h3>
+      <p style="font-size:15px">「核融合會用砷化鎵雷射發電」是有根據的押注，但可能要 10–20 年才會分出勝負。最後勝出的，可能是完全不同的發光方式或點火方式。</p>
+    </div>
+    <div class="card" style="border-color:#B9DBC7">
+      <h3 style="color:var(--ok)">較確定：已在發生</h3>
+      <p style="font-size:15px">半導體雷射直接把電子轉成光子，紀錄效率已超過 70%，其他方法很難在效率上大幅超越，通常只能在單位成本或單發能量上取勝。而且它的需求不靠核融合：AI 資料中心光通訊（矽光子、CPO）、3D 感測、車用光達、工業、醫療與牙科雷射、國防。</p>
+    </div>
+  </div>
+
+  <div class="theory">
+    <div class="tag">追蹤這場賽局的四個指標</div>
+    <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px">
+      <li><b>NIF 靶增益</b>能不能從約 4 推到 10 以上</li>
+      <li><b>二極體每瓦價格</b>有沒有朝 $0.01 持續下降</li>
+      <li><b>面射型雷射效率</b>和邊射型的差距是否持續縮小</li>
+      <li>哪一條路線<b>最先蓋出試驗電廠</b>並穩定運轉</li>
+    </ul>
+  </div>
+  <p class="quote">會被淘汰的是某一種元件；材料合成、薄膜成長、表面化學這些底層能力，換了發光方式還是用得上。</p>
+</section>
+
+<!-- career special -->
+<section id="career" class="special">
+  <div class="sec-head"><div class="sec-no" style="color:var(--ok)">延伸專題 · 給化學相關科系</div><h2>化學系學生，也在這條光路上</h2></div>
+  <div class="prose">
+    <p>核融合聽起來像物理系的事，但回頭看「圖 0B 光的旅程」，從晶片到靶丸，每一段背後都是<b>化學反應、材料和製程</b>。差別在於，有些職缺今天就有，有些要等核融合商轉。</p>
+  </div>
+  <figure>
+    <div class="fig-title">圖 C　光路上的每一站，對應哪一門化學</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 400" role="img" aria-label="雷射核融合光路各環節對應的化學領域與就業時程">
+      <!-- lane labels -->
+      <text x="20" y="30" class="sv-s" font-size="12.5">上排：光路環節　中排：用到的化學　下排：職缺何時出現</text>
+      <!-- stations -->
+      <g font-size="13.5" font-weight="700">
+        <rect x="20" y="42" width="160" height="50" rx="8" fill="#E1EEF8" stroke="#1F6FB2"/><text x="100" y="72" text-anchor="middle" class="sv-t">① 砷化鎵晶片</text>
+        <rect x="195" y="42" width="160" height="50" rx="8" fill="#E1EEF8" stroke="#1F6FB2"/><text x="275" y="72" text-anchor="middle" class="sv-t">② 封裝</text>
+        <rect x="370" y="42" width="160" height="50" rx="8" fill="#ECE6FA" stroke="#6A3FC8"/><text x="450" y="72" text-anchor="middle" class="sv-t">③ 雷射玻璃／晶體</text>
+        <rect x="545" y="42" width="160" height="50" rx="8" fill="#FBE7E0" stroke="#D2461E"/><text x="625" y="72" text-anchor="middle" class="sv-t">④ 燃料靶丸</text>
+        <rect x="720" y="42" width="160" height="50" rx="8" fill="#F1F5F8" stroke="#4A5A66"/><text x="800" y="72" text-anchor="middle" class="sv-t">⑤ 電廠運轉</text>
+      </g>
+      <g stroke="#D6DEE5" stroke-width="1.5"><line x1="100" y1="92" x2="100" y2="112"/><line x1="275" y1="92" x2="275" y2="112"/><line x1="450" y1="92" x2="450" y2="112"/><line x1="625" y1="92" x2="625" y2="112"/><line x1="800" y1="92" x2="800" y2="112"/></g>
+      <!-- chemistry lists -->
+      <g font-size="12.5" class="sv-s">
+        <rect x="20" y="112" width="160" height="170" rx="8" fill="#FFFFFF" stroke="#D6DEE5"/>
+        <text x="32" y="138" class="sv-t" font-weight="700">氣相反應工程</text><text x="32" y="156">MOCVD 磊晶前驅物</text>
+        <text x="32" y="184" class="sv-t" font-weight="700">表面／蝕刻化學</text><text x="32" y="202">濕蝕刻、CMP、清洗</text>
+        <text x="32" y="230" class="sv-t" font-weight="700">氧化反應控制</text><text x="32" y="248">VCSEL 氧化孔徑</text>
+        <text x="32" y="270">＋材料失效分析</text>
+        <rect x="195" y="112" width="160" height="170" rx="8" fill="#FFFFFF" stroke="#D6DEE5"/>
+        <text x="207" y="138" class="sv-t" font-weight="700">材料化學</text><text x="207" y="156">焊料、黏晶材料</text>
+        <text x="207" y="184" class="sv-t" font-weight="700">高分子化學</text><text x="207" y="202">封裝膠、導熱介面</text>
+        <text x="207" y="230" class="sv-t" font-weight="700">可靠度分析</text><text x="207" y="248">熱循環、老化機制</text>
+        <rect x="370" y="112" width="160" height="170" rx="8" fill="#FFFFFF" stroke="#D6DEE5"/>
+        <text x="382" y="138" class="sv-t" font-weight="700">玻璃化學</text><text x="382" y="156">摻釹磷酸鹽玻璃</text>
+        <text x="382" y="184" class="sv-t" font-weight="700">溶液結晶</text><text x="382" y="202">KDP 大型單晶生長</text>
+        <text x="382" y="230" class="sv-t" font-weight="700">光學鍍膜</text><text x="382" y="248">抗雷射損傷薄膜</text>
+        <rect x="545" y="112" width="160" height="170" rx="8" fill="#FFFFFF" stroke="#D6DEE5"/>
+        <text x="557" y="138" class="sv-t" font-weight="700">CVD 鑽石</text><text x="557" y="156">靶丸外殼</text>
+        <text x="557" y="184" class="sv-t" font-weight="700">低溫化學</text><text x="557" y="202">氘氚冰層均勻化</text>
+        <text x="557" y="230" class="sv-t" font-weight="700">化工量產</text><text x="557" y="248">每天約百萬顆靶丸</text>
+        <rect x="720" y="112" width="160" height="170" rx="8" fill="#FFFFFF" stroke="#D6DEE5"/>
+        <text x="732" y="138" class="sv-t" font-weight="700">放射化學</text><text x="732" y="156">氚處理與回收</text>
+        <text x="732" y="184" class="sv-t" font-weight="700">核化工</text><text x="732" y="202">鋰增殖氚</text>
+        <text x="732" y="230" class="sv-t" font-weight="700">材料耐輻射</text><text x="732" y="248">第一壁材料</text>
+      </g>
+      <!-- timeline bars -->
+      <rect x="20" y="304" width="335" height="40" rx="8" fill="#2E8A57" opacity=".9"/>
+      <text x="187" y="329" text-anchor="middle" font-size="13.5" font-weight="700" style="fill:#FFFFFF" fill="#FFFFFF" font-family="Noto Sans TC, sans-serif">今天就有：化合物半導體產業</text>
+      <rect x="370" y="304" width="160" height="40" rx="8" fill="#F2A93B" opacity=".9"/>
+      <text x="450" y="329" text-anchor="middle" font-size="13" font-weight="700" class="sv-t">少數：光學材料</text>
+      <rect x="545" y="304" width="335" height="40" rx="8" fill="#FFFFFF" stroke="#D2461E" stroke-dasharray="5 4"/>
+      <text x="712" y="329" text-anchor="middle" font-size="13.5" font-weight="700" class="sv-t">核融合商轉後（2030 年代後期起）</text>
+      <text x="20" y="378" class="sv-s" font-size="12.5">綠色區的技能，同時用在手機射頻、3D 感測、矽光子與共同封裝光學（CPO），不必押注核融合何時成真。</text>
+    </svg>
+    </div>
+    <figcaption>越往左，離「今天的職缺」越近；越往右，離「核融合本身」越近。</figcaption>
+  </figure>
+
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>領域</th><th>台灣代表公司</th><th>化學背景適合的職位</th></tr></thead>
+      <tbody>
+        <tr><td>砷化鎵晶圓代工</td><td>穩懋、宏捷科</td><td>製程工程師、良率工程師</td></tr>
+        <tr><td>磊晶片</td><td>全新光電、聯亞光電</td><td>磊晶工程師（MOCVD）</td></tr>
+        <tr><td>封裝</td><td>日月光等封測廠</td><td>材料工程師、可靠度工程師</td></tr>
+        <tr><td>半導體化學品／特用氣體</td><td>國際材料供應商在台據點</td><td>應用工程師、品保、工安</td></tr>
+        <tr><td>分析檢測</td><td>閎康、汎銓等檢測實驗室</td><td>材料分析、失效分析工程師</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3>在學期間可以加強</h3>
+      <ul>
+        <li>固態化學、物理化學（光譜學）</li>
+        <li>薄膜與表面化學、電化學</li>
+        <li>材料分析儀器實作：SEM、XPS、拉曼、XRD</li>
+        <li>修半導體製程課，或做相關專題研究</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>給學生的三個討論題</h3>
+      <ul>
+        <li>訪談說面射型雷射「老化是漸進的」。你會用哪些分析方法，證明一顆晶片正在老化？</li>
+        <li>MOCVD 的前驅物砷化氫有劇毒。量產規模放大 100 倍時，工安與廢氣處理要怎麼設計？</li>
+        <li>電廠每天要約百萬顆靶丸。如果由你設計生產線，哪一步最可能是瓶頸？</li>
+      </ul>
+    </div>
+  </div>
+  <p class="quote">化學系學生不用等核融合成真。現在進入化合物半導體產業，就已經站在這條供應鏈上。</p>
+  <div class="note">職缺與公司列舉是依台灣化合物半導體產業現況整理的方向參考，並非訪談內容，實際職缺請以各公司徵才資訊為準。</div>
+</section>
+
+<section id="src" aria-label="資料來源">
+  <div class="note">這頁根據節目官方說明、Jim Chiu 在 Fusion Energy Base 的文字專訪（2026/3），以及 LLNL 公開的 NIF 數據整理而成，並未取得影片逐字稿。圖中的推算（插頭端 Q 值、萊特定律計算、射擊頻率倍數）是依公開數字所做的示意估算，不是節目原話。</div>
+  <ol class="sources">
+    <li><a href="https://youtu.be/gMw-zGynHKc" target="_blank" rel="noopener">思想實驗室 Video Podcast ep119：ft. Holonomy Systems 創辦人 Jim Chiu（YouTube）</a></li>
+    <li><a href="https://podcasts.apple.com/tw/podcast/%E6%B3%9B%E6%B3%9B%E6%B3%9B%E7%A7%91%E5%AD%B8%E4%B9%8B%E6%80%9D%E6%83%B3%E5%AF%A6%E9%A9%97%E5%AE%A4/id1516967929" target="_blank" rel="noopener">泛泛泛科學之思想實驗室（Apple Podcasts 節目說明）</a></li>
+    <li><a href="https://www.fusionenergybase.com/articles/holonomy-systems-interview" target="_blank" rel="noopener">Holonomy Systems Interview（Fusion Energy Base）</a></li>
+    <li><a href="https://lasers.llnl.gov/science/achieving-fusion-ignition" target="_blank" rel="noopener">Achieving Fusion Ignition（LLNL NIF）</a></li>
+    <li><a href="https://www.world-nuclear-news.org/articles/constellation-to-restart-three-mile-island-unit-powering-microsoft" target="_blank" rel="noopener">Constellation to restart Three Mile Island unit, powering Microsoft（World Nuclear News）</a></li>
+    <li><a href="https://prosperousamerica.org/fusion-and-the-future-of-american-power/" target="_blank" rel="noopener">Fusion and the Future of American Power（CPA）</a></li>
+  </ol>
+</section>
+
+<footer>製作人：Masky Wang · 知識圖解整理，內容僅供學習參考</footer>
+</div>
+
+<script>
+(function(){
+  var lr=document.getElementById('lr'), sp=document.getElementById('startp');
+  var starts=[0.30,0.60,1.30];
+  function fmtVol(x){
+    if(x>=1e8) return (x/1e8).toFixed(1)+'億×';
+    if(x>=1e4) return (x/1e4).toFixed(1)+'萬×';
+    return Math.round(x).toLocaleString()+'×';
+  }
+  function upd(){
+    var r=lr.value/100, s=starts[sp.value];
+    var gap=s/0.01;
+    var d=Math.log(gap)/Math.log(1/(1-r));
+    document.getElementById('lrv').textContent=lr.value+'%';
+    document.getElementById('spv').textContent='$'+s.toFixed(2)+'/W';
+    document.getElementById('o-gap').textContent=Math.round(gap)+'×';
+    document.getElementById('o-dbl').textContent=d.toFixed(1);
+    document.getElementById('o-vol').textContent=fmtVol(Math.pow(2,d));
+  }
+  lr.addEventListener('input',upd); sp.addEventListener('input',upd); upd();
+})();
+</script>
+</body>
+</html>
