@@ -154,7 +154,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 </header>
 
 <nav class="toc" aria-label="目錄">
-  <a href="#basics">核融合怎麼發電</a><a href="#why">核融合 × 半導體</a><a href="#s1">AI 搶電</a><a href="#s2">兩條核融合路線</a><a href="#s3">Q 值拆解</a><a href="#s4">五萬倍製造牆</a><a href="#s5">雷射二極體</a><a href="#s6">成本學習曲線</a><a href="#s7">台灣砷化鎵</a><a href="#s8">灘頭堡策略</a><a href="#s9">理論總整理</a><a href="#s10">風險與反思</a><a href="#career" style="color:var(--ok);font-weight:700">化學系職涯專題</a>
+  <a href="#basics">核融合怎麼發電</a><a href="#chain">雷射怎麼點火</a><a href="#why">核融合 × 半導體</a><a href="#s1">AI 搶電</a><a href="#s2">兩條核融合路線</a><a href="#s3">Q 值拆解</a><a href="#s4">五萬倍製造牆</a><a href="#s5">雷射二極體</a><a href="#s6">成本學習曲線</a><a href="#s7">台灣砷化鎵</a><a href="#s8">灘頭堡策略</a><a href="#s9">理論總整理</a><a href="#s10">風險與反思</a><a href="#career" style="color:var(--ok);font-weight:700">化學系職涯專題</a>
 </nav>
 
 <!-- basics -->
@@ -246,6 +246,84 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
   <div class="note"><b>那到底用哪一種？</b>目前沒有定論，兩條路都在進行，也還沒有人能發電。另外還有混合路線，例如 Helion（磁化靶）、Pacific Fusion（脈衝電力），見本頁圖 10。<b>以下內容以雷射（慣性約束）路線為主</b>，因為訪談來賓的公司賣的是雷射用的半導體晶片，只有這條路線需要成千上萬顆。</div>
 </section>
 
+<!-- chain -->
+<section id="chain">
+  <div class="sec-head"><div class="sec-no">承上啟下 · 從慣性約束到雷射點火</div><h2>雷射是怎麼做出來的？「泵浦」又是什麼？</h2></div>
+  <div class="prose">
+    <p><b>先接上前一節。</b>慣性約束的做法是：在燃料飛散之前的幾奈秒內，把極大量的能量塞進毫米大小的燃料球。這要求能量源同時做到三件事：<b>能量夠大、瞬間送達、能精準對準</b>。能做到的東西不多，雷射是其中最合適的，因為它的光可以在時間上壓縮成極短的脈衝，在空間上聚焦成極小的一點。</p>
+    <p>NIF 的規模是：<b>約 2 百萬焦耳的紫外雷射，在十幾奈秒內打出，峰值功率約 500 TW</b>（TW 是 10¹² 瓦，約為全球平均用電功率的一百多倍）。這麼大的功率只持續一瞬間，所以整個問題變成：<b>怎麼做出這麼短、這麼強的一道光？</b></p>
+  </div>
+
+  <div class="theory">
+    <div class="tag">名詞先講清楚 · 泵浦（Pump）</div>
+    <h3>泵浦 ＝ 把雷射材料「充飽電」的那道光</h3>
+    <p>「泵浦」是英文 pump 的翻譯（有些地方寫成「幫浦」），原意是抽水機。雷射材料（例如摻釹的雷射玻璃）本身不會發光，必須先用<b>另一道光</b>把它裡面的原子激發到高能量狀態，這個「充能量」的動作就叫泵浦，那道用來充能量的光就叫<b>泵浦光</b>，發出這道光的光源就是<b>泵浦光源</b>。</p>
+    <p>可以這樣類比：泵浦光源像<b>抽水機</b>，雷射玻璃像<b>水塔</b>。抽水機慢慢把水抽進水塔（儲存能量），之後打開閘門，水就一次衝出來（釋放成雷射）。</p>
+  </div>
+
+  <figure>
+    <div class="fig-title">圖 B　關鍵原理：慢慢存、瞬間放</div>
+    <div class="scroll">
+    <svg viewBox="0 0 900 300" role="img" aria-label="泵浦光長時間低功率灌能量，放大輸出在極短時間內釋放，功率暴增">
+      <defs><marker id="arB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15222C"/></marker></defs>
+      <text x="200" y="30" text-anchor="middle" class="sv-t" font-size="15" font-weight="700">① 泵浦：慢慢灌能量</text>
+      <text x="200" y="50" text-anchor="middle" class="sv-s" font-size="12.5">持續約千分之一秒，功率不需要很高</text>
+      <line x1="40" y1="220" x2="380" y2="220" stroke="#15222C" stroke-width="1.5"/>
+      <rect x="60" y="170" width="300" height="50" fill="#ECE6FA" stroke="#6A3FC8" stroke-width="2"/>
+      <text x="210" y="200" text-anchor="middle" class="sv-t" font-size="13" font-weight="700">泵浦光（來自二極體或閃光燈）</text>
+      <text x="380" y="240" text-anchor="end" class="sv-s" font-size="12">時間 →（約 10⁻³ 秒）</text>
+
+      <line x1="400" y1="150" x2="490" y2="150" stroke="#15222C" stroke-width="1.8" marker-end="url(#arB)"/>
+      <text x="445" y="130" text-anchor="middle" class="sv-s" font-size="12">能量存進</text>
+      <text x="445" y="146" text-anchor="middle" class="sv-s" font-size="12">雷射玻璃</text>
+      <text x="445" y="180" text-anchor="middle" class="sv-s" font-size="12">（水塔）</text>
+
+      <text x="700" y="30" text-anchor="middle" class="sv-t" font-size="15" font-weight="700">② 放大輸出：瞬間放出</text>
+      <text x="700" y="50" text-anchor="middle" class="sv-s" font-size="12.5">只持續十億分之一秒，功率暴增</text>
+      <line x1="520" y1="220" x2="860" y2="220" stroke="#15222C" stroke-width="1.5"/>
+      <rect x="675" y="70" width="28" height="150" fill="#D2461E"/>
+      <text x="720" y="100" class="sv-t" font-size="13" font-weight="700">雷射脈衝</text>
+      <text x="720" y="118" class="sv-s" font-size="12">能量差不多，時間短約十萬倍</text>
+      <text x="720" y="136" class="sv-s" font-size="12">→ 功率高約十萬倍</text>
+      <text x="860" y="240" text-anchor="end" class="sv-s" font-size="12">時間 →（約 10⁻⁹ 秒）</text>
+
+      <rect x="40" y="258" width="820" height="34" rx="8" fill="#F1F5F8"/>
+      <text x="450" y="280" text-anchor="middle" class="sv-s" font-size="13">兩邊的時間軸比例不同。重點：用不太強的電源，也能做出瞬間極強的光。這是雷射點火成立的關鍵。</text>
+    </svg>
+    </div>
+    <figcaption>能量大致守恆，差別只在「花多久釋放」。泵浦花千分之一秒儲存，放大只用十億分之一秒釋放，功率因此放大約十萬倍。</figcaption>
+  </figure>
+
+  <div class="prose">
+    <p>把整條路串起來，一次雷射點火的過程是這六步：</p>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>步驟</th><th>發生什麼事</th><th>NIF 的概略數字</th></tr></thead>
+      <tbody>
+        <tr><td><b>① 泵浦</b></td><td>泵浦光源發光，把雷射玻璃裡的原子激發到高能狀態，能量先存起來</td><td>從電網取電，總電光效率不到 1%</td></tr>
+        <tr><td><b>② 種子雷射</b></td><td>先做出一道很弱、但形狀和時間都很準的雷射脈衝</td><td>只有十億分之一焦耳</td></tr>
+        <tr><td><b>③ 放大</b></td><td>種子脈衝穿過已充好能量的雷射玻璃，一路把儲存的能量「提領」出來，分成 192 道光束，每道各自放大</td><td>放大約一千萬億倍，成為約 4 MJ 的紅外光</td></tr>
+        <tr><td><b>④ 倍頻</b></td><td>紅外光通過特殊晶體，波長減為三分之一，變成紫外光（紫外光比較容易被燃料吸收）</td><td>1053 nm → 351 nm，剩約 2 MJ</td></tr>
+        <tr><td><b>⑤ 打靶</b></td><td>雷射射進金色小圓筒（黑腔）裡，產生 X 光，均勻壓縮中間的燃料靶丸</td><td>幾奈秒內完成</td></tr>
+        <tr><td><b>⑥ 點火</b></td><td>燃料被壓到極高密度與溫度，開始自己維持融合，放出能量</td><td>2025 年輸出 8.6 MJ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3>為什麼泵浦光源是個大問題？</h3>
+      <p style="font-size:15px">泵浦光源是整條鏈的第一步，也是最耗電的一步。NIF 現在用<b>閃光燈</b>：它發出的是各種顏色混在一起的白光，雷射玻璃只吸收其中一小段波長，其餘變成廢熱，所以效率低、發熱大、打一發要冷卻幾個小時。</p>
+    </div>
+    <div class="card">
+      <h3>為什麼要換成半導體雷射二極體？</h3>
+      <p style="font-size:15px">二極體發出的光波長很窄，可以精準調到雷射玻璃最愛吸收的那一段，幾乎不浪費。電變光效率可達 50–70%，也能每秒重複打好幾次。這就是電廠必須把泵浦光源換成<b>半導體雷射二極體</b>的原因，也是這個網頁後面一直在談砷化鎵晶片的原因。</p>
+    </div>
+  </div>
+  <div class="note"><b>一句話串起來：</b>慣性約束需要一道極短極強的光 → 雷射能做到 → 雷射靠「泵浦慢慢存、放大瞬間放」 → 泵浦光源的效率和成本決定電廠划不划算 → 所以要把泵浦光源換成半導體晶片。上面的數字是 NIF 公開資料的概略值，用來幫助理解，不是精確規格。</div>
+</section>
+
 <!-- 0 intro -->
 <section id="why">
   <div class="sec-head"><div class="sec-no">00 · 導讀</div><h2>核融合發電，跟半導體製造有什麼關係？</h2></div>
@@ -269,10 +347,10 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
         <text x="259" y="82" class="sv-t" font-size="15" font-weight="700">大型雷射</text>
         <text x="259" y="108" class="sv-s" font-size="12.5">雷射玻璃／晶體要先</text>
         <text x="259" y="126" class="sv-s" font-size="12.5">被強光「灌能量」</text>
-        <text x="259" y="150" class="sv-s" font-size="12.5">這道光叫幫浦光</text>
+        <text x="259" y="150" class="sv-s" font-size="12.5">這道光叫泵浦光</text>
         <rect x="466" y="30" width="195" height="150" rx="10" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/>
         <text x="482" y="58" class="sv-m" font-size="12" fill="#D2461E" style="fill:#D2461E">第 3 層</text>
-        <text x="482" y="82" class="sv-t" font-size="15" font-weight="700">幫浦光源</text>
+        <text x="482" y="82" class="sv-t" font-size="15" font-weight="700">泵浦光源</text>
         <text x="482" y="108" class="sv-s" font-size="12.5">閃光燈 → 換成</text>
         <text x="482" y="126" class="sv-s" font-size="12.5">半導體雷射二極體</text>
         <text x="482" y="150" class="sv-s" font-size="12.5">（LED 的近親）</text>
@@ -292,7 +370,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
       <text x="180" y="262" class="sv-s" font-size="13.5">每顆還要能打 10 億發。這是半導體產業擅長的問題，不是核物理的問題。</text>
     </svg>
     </div>
-    <figcaption>箭頭方向代表「靠什麼來運作」：電廠靠雷射，雷射靠幫浦光，幫浦光靠晶片。</figcaption>
+    <figcaption>箭頭方向代表「靠什麼來運作」：電廠靠雷射，雷射靠泵浦光，泵浦光靠晶片。</figcaption>
   </figure>
   <div class="prose">
     <p>常見的誤會是砷化鎵雷射直接打燃料。其實它的光太弱、波長也不對，要經過三次轉手：<b>先灌能量給雷射材料 → 放大成高能光束 → 轉成紫外光</b>，最後才打到靶丸上。</p>
@@ -300,7 +378,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
   <figure>
     <div class="fig-title">圖 0B　光的旅程：從砷化鎵晶片到核融合燃料</div>
     <div class="scroll">
-    <svg viewBox="0 0 900 470" role="img" aria-label="砷化鎵雷射二極體幫浦主雷射，最後打擊核融合靶丸的光路示意圖">
+    <svg viewBox="0 0 900 470" role="img" aria-label="砷化鎵雷射二極體泵浦主雷射，最後打擊核融合靶丸的光路示意圖">
       <defs>
         <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#15222C"/></marker>
         <radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FFF4C2"/><stop offset="55%" stop-color="#F2A93B"/><stop offset="100%" stop-color="#D2461E"/></radialGradient>
@@ -400,7 +478,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
       </g>
     </svg>
     </div>
-    <figcaption>NIF 是「間接驅動」：雷射先打進一個金色小圓筒，產生 X 光再均勻壓縮靶丸。這裡為了看清楚，畫成雷射直接照射。NIF 現在的幫浦光源是閃光燈，電廠要換成圖中的砷化鎵二極體陣列，因為閃光燈打不快也不夠有效率。</figcaption>
+    <figcaption>NIF 是「間接驅動」：雷射先打進一個金色小圓筒，產生 X 光再均勻壓縮靶丸。這裡為了看清楚，畫成雷射直接照射。NIF 現在的泵浦光源是閃光燈，電廠要換成圖中的砷化鎵二極體陣列，因為閃光燈打不快也不夠有效率。</figcaption>
   </figure>
   <div class="tscroll">
     <table>
@@ -415,7 +493,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
     </table>
   </div>
   <div class="two">
-    <div class="card"><h3>台灣的位置 ①：晶圓代工</h3><p style="font-size:15px">全球最大的純砷化鎵晶圓代工廠穩懋，還有宏捷科，都在台灣。它們原本做手機射頻晶片和 iPhone 臉部辨識用的 VCSEL，技術可以轉用在幫浦雷射上。</p></div>
+    <div class="card"><h3>台灣的位置 ①：晶圓代工</h3><p style="font-size:15px">全球最大的純砷化鎵晶圓代工廠穩懋，還有宏捷科，都在台灣。它們原本做手機射頻晶片和 iPhone 臉部辨識用的 VCSEL，技術可以轉用在泵浦雷射上。</p></div>
     <div class="card"><h3>台灣的位置 ②：封裝</h3><p style="font-size:15px">雷射二極體的成本有一半以上在封裝（貼片、對準、散熱），而且大多還是手工。台灣有全世界最密集的先進封裝生態系，自動化是降價的關鍵。</p></div>
   </div>
   <p class="quote">電廠的能量來自核融合，點火的雷射來自半導體晶片。</p>
@@ -426,7 +504,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
     <div class="num"><div class="v">4.13</div><div class="k">NIF 目前最高的「靶增益」（2025/4：輸入 2.08 MJ，產出 8.6 MJ）</div></div>
     <div class="num"><div class="v">30–100</div><div class="k">雷射核融合電廠需要的靶增益</div></div>
     <div class="num"><div class="v">~5萬<small>倍</small></div><div class="k">從實驗室每天幾發，到電廠每秒約 10 發的射擊頻率差距</div></div>
-    <div class="num"><div class="v">$0.01<small>/W</small></div><div class="k">DOE 設定的二極體幫浦成本目標，現在是 $0.30–1.30/W</div></div>
+    <div class="num"><div class="v">$0.01<small>/W</small></div><div class="k">DOE 設定的二極體泵浦成本目標，現在是 $0.30–1.30/W</div></div>
     <div class="num"><div class="v">~50<small>GW</small></div><div class="k">一座雷射核融合電廠所需的二極體峰值功率，約 5,000 萬條雷射巴條</div></div>
   </div>
 </section>
@@ -583,7 +661,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
     <figcaption>以 NIF 最佳情況約每 5,000 秒一發估算，10 Hz ÷ 0.0002 Hz ≈ 50,000。實際 NIF 通常一天只打一、兩發高能量發射，所以真正差距更大。</figcaption>
   </figure>
   <div class="two">
-    <div class="card"><h3>要打得快</h3><ul><li>閃光燈發熱大、壽命短，不能每秒 10 發</li><li>必須換成<b>二極體雷射幫浦</b>（DPSSL）</li><li>一座電廠需要 ~50 GW 峰值二極體功率</li></ul></div>
+    <div class="card"><h3>要打得快</h3><ul><li>閃光燈發熱大、壽命短，不能每秒 10 發</li><li>必須換成<b>二極體雷射泵浦</b>（DPSSL）</li><li>一座電廠需要 ~50 GW 峰值二極體功率</li></ul></div>
     <div class="card"><h3>要打得便宜</h3><ul><li>現在二極體約 $0.30–1.30 / W</li><li>電廠要 ~$0.01 / W，差 30–100 倍</li><li>約 5,000 萬條巨條，是全球年產量的好幾倍</li></ul></div>
     <div class="card"><h3>要打得久</h3><ul><li>每個模組要撐 10 億發以上</li><li>上千萬個模組，不可能逐一離線檢修</li><li>需要可預測的<b>漸進式老化</b>，不能突然死亡</li></ul></div>
   </div>
@@ -593,7 +671,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
 <section id="s5">
   <div class="sec-head"><div class="sec-no">05 · 技術拆解</div><h2>雷射的心臟：邊射型 vs. 面射型二極體</h2></div>
   <div class="prose">
-    <p>幫浦二極體把電變成光，再用光去「餵」主雷射的增益介質。現在業界主流是<b>邊射型</b>（EEL），光從晶片側邊的切面射出。Jim 押注的是<b>面射型</b>（VCSEL，以及更新的 PCSEL），光從晶片表面垂直射出。</p>
+    <p>泵浦二極體把電變成光，再用光去「餵」主雷射的增益介質。現在業界主流是<b>邊射型</b>（EEL），光從晶片側邊的切面射出。Jim 押注的是<b>面射型</b>（VCSEL，以及更新的 PCSEL），光從晶片表面垂直射出。</p>
   </div>
   <figure>
     <div class="fig-title">圖 5　出光方向決定了封裝、測試與失效方式</div>
@@ -724,7 +802,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
       <text x="200" y="28" text-anchor="middle" class="sv-t" font-size="15" font-weight="700">現況：垂直整合的雷射大廠</text>
       <rect x="90" y="45" width="220" height="250" rx="10" fill="#F1F5F8" stroke="#4A5A66" stroke-width="1.5"/>
       <g class="sv-t" font-size="13" text-anchor="middle">
-        <text x="200" y="85">磊晶</text><text x="200" y="130">晶片製造</text><text x="200" y="175">巨條封裝（手工）</text><text x="200" y="220">幫浦模組</text><text x="200" y="265">雷射系統</text>
+        <text x="200" y="85">磊晶</text><text x="200" y="130">晶片製造</text><text x="200" y="175">巨條封裝（手工）</text><text x="200" y="220">泵浦模組</text><text x="200" y="265">雷射系統</text>
       </g>
       <g stroke="#D6DEE5"><line x1="110" y1="102" x2="290" y2="102"/><line x1="110" y1="147" x2="290" y2="147"/><line x1="110" y1="192" x2="290" y2="192"/><line x1="110" y1="237" x2="290" y2="237"/></g>
       <text x="200" y="318" text-anchor="middle" class="sv-s" font-size="12.5">同一家公司包辦，介面不公開</text>
@@ -736,7 +814,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
         <rect x="520" y="145" width="320" height="58" rx="6" fill="#FBE7E0" stroke="#D2461E" stroke-width="2"/><text x="536" y="170" class="sv-t" font-weight="700">Photon Brick 標準模組</text><text x="536" y="191" class="sv-s" font-size="12">驅動電路＋散熱＋光束整形＋每發遙測</text>
         <rect x="520" y="213" width="320" height="40" rx="6" fill="#E1EEF8"/><text x="536" y="238" class="sv-t">系統整合商　<tspan class="sv-s">國防、工業、IFE 公司</tspan></text>
       </g>
-      <text x="680" y="280" text-anchor="middle" class="sv-s" font-size="12.5">客戶只需要：直流電 + 數位指令 → 校準過的幫浦光</text>
+      <text x="680" y="280" text-anchor="middle" class="sv-s" font-size="12.5">客戶只需要：直流電 + 數位指令 → 校準過的泵浦光</text>
       <text x="680" y="300" text-anchor="middle" class="sv-s" font-size="12.5">美國公司持有 IP、處理出口管制；台灣子公司負責先進封裝</text>
     </svg>
     </div>
@@ -745,7 +823,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
   <div class="theory">
     <div class="tag">理論透鏡 · 模組化理論（Christensen）× 微笑曲線</div>
     <h3>產品「夠好」之後，整合的優勢會轉向模組化</h3>
-    <p>克里斯汀生的模組化理論指出：技術還不成熟時，垂直整合比較有利，因為各部分要緊密磨合；一旦性能超過需求，產業會轉向標準介面，競爭焦點變成成本和速度。個人電腦和半導體都走過這條路。Jim 的判斷是高功率雷射幫浦已經到了這個轉折點。從施振榮的微笑曲線來看，封裝原本在曲線底部，但如果掌握了標準介面和遙測數據，它就可能變成能收取溢價的平台層。</p>
+    <p>克里斯汀生的模組化理論指出：技術還不成熟時，垂直整合比較有利，因為各部分要緊密磨合；一旦性能超過需求，產業會轉向標準介面，競爭焦點變成成本和速度。個人電腦和半導體都走過這條路。Jim 的判斷是高功率雷射泵浦已經到了這個轉折點。從施振榮的微笑曲線來看，封裝原本在曲線底部，但如果掌握了標準介面和遙測數據，它就可能變成能收取溢價的平台層。</p>
   </div>
 </section>
 
@@ -848,7 +926,7 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-si
         <rect x="30" y="118" width="250" height="44" rx="8" fill="#ECE6FA" stroke="#6A3FC8"/>
         <text x="155" y="145" text-anchor="middle" class="sv-t">第 1 層：用雷射路線？</text>
         <rect x="30" y="216" width="250" height="44" rx="8" fill="#FBE7E0" stroke="#D2461E"/>
-        <text x="155" y="243" text-anchor="middle" class="sv-t">第 2 層：用二極體幫浦？</text>
+        <text x="155" y="243" text-anchor="middle" class="sv-t">第 2 層：用二極體泵浦？</text>
         <rect x="30" y="314" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#D2461E" stroke-width="2.5"/>
         <text x="155" y="337" text-anchor="middle" class="sv-t">第 3 層：用面射型？</text>
         <text x="155" y="356" text-anchor="middle" class="sv-s" font-size="12" font-weight="400">＝ Jim 押注的終點</text>
